@@ -1,0 +1,21 @@
+.example-container {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center;
+    align-items: center; */
+    padding: 2rem;
+  }
+  
+  .example-container > * {
+    width: 100%;
+  }
+
+  .form {
+    margin: 1rem;
+    width: 20rem;
+  }
+
+.example-button-row{
+  display: flex;
+  justify-content: center;
+}

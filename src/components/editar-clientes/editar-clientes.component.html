@@ -1,0 +1,24 @@
+<div class="example-container">
+  <mat-form-field>
+    <mat-select placeholder="Seleccionar cliente" [(ngModel)]="celda.cliente">
+      <mat-option [value]="cliente" *ngFor="let cliente of clientes">{{cliente.nombre}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <input class="form" matInput placeholder="Nombre" [(ngModel)]="nuevoNombre" [value]="celda.cliente?.nombre" >
+  </mat-form-field>
+  <!-- <mat-form-field>
+    <mat-select placeholder="Seleccionar producto" [(ngModel)]="celda.producto">
+      <mat-option [value]="producto" *ngFor="let producto of productos">{{producto.nombre}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field *ngIf="celda.cliente && celda.producto">
+    <input class="form" matInput type="number" placeholder="Nuevo precio" [value]="precioFinal()"
+      [(ngModel)]="nuevoPrecioFinal">
+  </mat-form-field> -->
+  <div class="example-button-row">
+    <button class="form" mat-raised-button color="primary" (click)="actualizarCliente()">Aceptar</button>
+    <button class="form" mat-raised-button color="accent" (click)="volver()">Cancelar</button>
+  </div>
+</div>
+<!-- <div *ngFor="let error of errors">Error: {{error}}</div> -->

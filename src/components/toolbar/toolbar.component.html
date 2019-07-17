@@ -1,0 +1,17 @@
+<mat-toolbar color="primary">
+  <button mat-button [matMenuTriggerFor]="menu">
+    <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <!-- TODO: mostrar de acuerdo a la seleccion del menu en el toolbar -->
+    <button mat-menu-item [routerLink]="['planilla']">Planilla</button>
+    <button mat-menu-item >Nuevo cliente</button>
+    <button mat-menu-item [routerLink]="['editar-clientes']">Editar clientes</button>
+    <button mat-menu-item [routerLink]="['editar-productos']">Editar productos</button>
+  </mat-menu>
+  <span class="example-spacer"></span>
+  <span>Reparto</span>
+  <span class="example-spacer"></span>
+  <!-- <mat-icon class="example-icon" aria-hidden="false" aria-label="Example heart icon">favorite</mat-icon>
+  <mat-icon class="example-icon" aria-hidden="false" aria-label="Example delete icon">delete</mat-icon> -->
+</mat-toolbar>
