@@ -2,33 +2,35 @@ import { Producto } from './producto';
 import { Cliente } from './cliente';
 
 export class Celda {
-    constructor(public producto?: Producto, public cliente?: Cliente) {
+    constructor(public producto?: Producto, public cantidad?: number, public precioFinal ?: number) {
     }
-    
-    cambiarNombreCliente(nuevoNombre: string): void {
-        // porque no se puede asignar asi? cambiarNombre is not a function
-        // this.cliente.cambiarNombre(nuevoNombre)
-        this.cliente.nombre = nuevoNombre
-    }
-    
-    get precioFinal(): number {
-        return this.producto.precioBase 
-    }
-    // + this.cliente.getGananciaProducto(this.producto.id)
 
-    set precioFinal(valorFinal: number) {
+    get nombreProducto() {
+        return this.producto.nombre
+    }
+
+    getPrecioFinal(cliente: Cliente): number {
+        return this.precioFinal
+    }
+    // return this.producto.precioBase + cliente.getGananciaProducto(this.producto.id)
+
+    setPrecioFinal(valorFinal: number, cliente: Cliente) {
         let ganancia = valorFinal - this.producto.precioBase
         if (ganancia <= 0) {
             throw ("El precio final debe ser mayor a " + this.producto.precioBase)
         }
-        this.cliente.asignarGanancia(this.producto.id, ganancia)
+        cliente.asignarGanancia(this.producto.id, ganancia)
     }
 
-    get ganancia(): number {
-        return this.cliente.getGananciaProducto(this.producto.id)
+    getGanancia(cliente: Cliente): number {
+        return cliente.getGananciaProducto(this.producto.id)
     }
 
-    getTest(){
+    getPrecioCelda(cliente: Cliente) {
+        return this.getPrecioFinal(cliente) * this.cantidad
+    }
+
+    getTest() {
         return 555
     }
 }

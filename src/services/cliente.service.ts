@@ -6,7 +6,7 @@ import { map, catchError } from 'rxjs/operators'
 import { Observable, of } from 'rxjs';
 
 export interface IClienteService {
-  
+
   getClientes(): Promise<any>
 
   actualizarCliente(cliente: Cliente): void
@@ -21,8 +21,19 @@ export class ClienteService implements IClienteService {
   constructor(private http: HttpClient) { }
 
   async actualizarCliente(cliente: Cliente) {
-    const clienteJson = this.toJSON(cliente)
+    const clienteJson = this.convertToJson(cliente)
     return this.http.put(REST_SERVER_URL + "/clientes/" + clienteJson.id, clienteJson).toPromise()
+  }
+
+  async nuevoCliente(cliente: Cliente) {
+    const clienteJson = this.convertToJson(cliente);
+    return this.http.post(REST_SERVER_URL + "/clientes", clienteJson).toPromise()
+  }
+
+  private convertToJson(cliente: Cliente) {
+    const clienteJson = this.toJSON(cliente);
+    clienteJson.ganancias = cliente.gananciasJson();
+    return clienteJson;
   }
 
   async getClientes(): Promise<any> {
@@ -30,12 +41,12 @@ export class ClienteService implements IClienteService {
     return res
   }
 
-  private toJSON(cliente: Cliente) {
+  private toJSON(cliente: Cliente): any {
     return Object.assign({}, cliente);
   }
 }
 
-export class StubClienteService implements IClienteService{
+export class StubClienteService implements IClienteService {
 
   clientes: Array<Cliente> = []
 

@@ -1,11 +1,11 @@
 <div class="example-container">
-  <mat-form-field>
+  <mat-form-field *ngIf="noIngresoNuevoCliente()">
     <mat-select placeholder="Seleccionar cliente" [(ngModel)]="celda.cliente">
       <mat-option [value]="cliente" *ngFor="let cliente of clientes">{{cliente.nombre}}</mat-option>
     </mat-select>
   </mat-form-field>
   <mat-form-field>
-    <input class="form" matInput placeholder="Nombre" [(ngModel)]="nuevoNombre" [value]="celda.cliente?.nombre" >
+    <input class="form" matInput placeholder="Nombre" [(ngModel)]="nuevoNombre" [value]="celda.cliente?.nombre">
   </mat-form-field>
   <!-- <mat-form-field>
     <mat-select placeholder="Seleccionar producto" [(ngModel)]="celda.producto">

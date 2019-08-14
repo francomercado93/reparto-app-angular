@@ -24,12 +24,14 @@ export class EditarClientesComponent implements OnInit {
   nuevoNombre: string = ""
   nuevoPrecioFinal: number
   errors = []
+  nuevoCliente: Cliente
 
   constructor(private clienteService: ClienteService, private productoService: ProductoService, private router: Router) { }
 
   async ngOnInit() {
     // Truco para que refresque la pantalla 
     this.celda = new Celda()
+    this.nuevoCliente = new Cliente()
     try {
       this.router.routeReuseStrategy.shouldReuseRoute = () => false
       this.clientes = await this.clienteService.getClientes()
@@ -46,8 +48,8 @@ export class EditarClientesComponent implements OnInit {
 
   async actualizarCliente() {
     try {
-      this.celda.cambiarNombreCliente(this.nuevoNombre)
-      await this.clienteService.actualizarCliente(this.celda.cliente)
+      // this.celda.cambiarNombreCliente(this.nuevoNombre)
+      // await this.clienteService.actualizarCliente(this.celda.cliente)
       this.volver()
     } catch (error) {
       mostrarError(this, error)
@@ -55,6 +57,11 @@ export class EditarClientesComponent implements OnInit {
   }
 
   precioFinal(): number {
-    return this.celda.precioFinal
+    return 5
+    // return this.celda.precioFinal
+  }
+
+  noIngresoNuevoCliente(): boolean{
+    return this.nuevoCliente.nombre !== null
   }
 }
