@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Celda } from 'src/domain/celda';
 import { Cliente } from 'src/domain/cliente';
 import { Producto } from 'src/domain/producto';
-import { ClienteService } from 'src/services/cliente.service';
-import { ProductoService } from 'src/services/producto.service';
+import { StubClienteService } from 'src/services/cliente.service';
+import { StubProductoService } from 'src/services/producto.service';
+import { Fila } from 'src/domain/fila';
 
 function mostrarError(component, error) {
   console.log("error", error)
@@ -16,52 +17,75 @@ function mostrarError(component, error) {
   templateUrl: './editar-clientes.component.html',
   styleUrls: ['./editar-clientes.component.css']
 })
-export class EditarClientesComponent implements OnInit {
+export class EditarClienteComponent implements OnInit {
 
-  clientes: Array<Cliente> = []
   productos: Array<Producto> = []
-  celda: Celda
-  nuevoNombre: string = ""
-  nuevoPrecioFinal: number
+  fila: Fila = new Fila()
   errors = []
-  nuevoCliente: Cliente
+  nuevoNombre: string
+  alta: boolean = false
 
-  constructor(private clienteService: ClienteService, private productoService: ProductoService, private router: Router) { }
+  constructor(private clienteService: StubClienteService, private productoService: StubProductoService, private router: Router, private route: ActivatedRoute) {
+    // Revisar esto que ya lo hace en el boton de la toolbar
+    this.clienteService.initCliente()
+  }
 
   async ngOnInit() {
-    // Truco para que refresque la pantalla 
-    this.celda = new Celda()
-    this.nuevoCliente = new Cliente()
+    this.fila.cliente = new Cliente()
+    // Averiguar diferencia entre this.route.snapshot.params.id y  this.route.params.subscribe(params => {...
+    const paramId = this.route.snapshot.params.id
+    this.alta = paramId == 'new'
     try {
+      if (!this.alta) {  //Si no es un nuevo cliente lo buscamos con el service
+        this.route.params.subscribe(params => {
+          this.fila.cliente = this.clienteService.getClienteById(params['id'])
+          if (!this.fila.cliente) {
+            this.volver()
+            return
+          }
+        })
+        this.nuevoNombre = this.fila.cliente.nombre
+      }
       this.router.routeReuseStrategy.shouldReuseRoute = () => false
-      this.clientes = await this.clienteService.getClientes()
       this.productos = await this.productoService.getProductos()
+      this.fila.crearCeldas(this.productos)
     } catch (error) {
       mostrarError(this, error)
     }
+  }
+
+  get celdas() {
+    return this.fila.celdas
   }
 
   volver() {
-    // this.router.navigate(['planilla'])
-    console.log(this.clientes)
+    this.router.navigate(['/clientes'])
   }
 
-  async actualizarCliente() {
+  async aceptar() {
     try {
-      // this.celda.cambiarNombreCliente(this.nuevoNombre)
-      // await this.clienteService.actualizarCliente(this.celda.cliente)
+      this.validarNombre()
+      this.fila.cliente.nombre = this.nuevoNombre
+      this.fila.asignarGanancias()
+      this.crearOActualizar();
       this.volver()
-    } catch (error) {
-      mostrarError(this, error)
+    } catch (e) {
+      this.errors.push(e)
     }
   }
 
-  precioFinal(): number {
-    return 5
-    // return this.celda.precioFinal
+  private crearOActualizar() {
+    if (this.alta) {
+      this.clienteService.nuevoCliente(this.fila.cliente);
+    }
+    else {
+      this.clienteService.actualizarCliente(this.fila.cliente);
+    }
   }
 
-  noIngresoNuevoCliente(): boolean{
-    return this.nuevoCliente.nombre !== null
+  private validarNombre() {
+    this.errors = [];
+    if (this.nuevoNombre == null || this.nuevoNombre == "")
+      throw "Debe elegir un nombre valido";
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductoService } from 'src/services/producto.service';
+import { ProductoService, StubProductoService } from 'src/services/producto.service';
 import { Producto } from 'src/domain/producto';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -20,7 +20,7 @@ export class EditarProductosComponent implements OnInit {
   nuevoPrecio: number = 0
   errors = []
 
-  constructor(private productoService: ProductoService, private router: Router) { }
+  constructor(private productoService: StubProductoService, private router: Router) { }
 
   async ngOnInit() {
     try {

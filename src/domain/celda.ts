@@ -2,32 +2,28 @@ import { Producto } from './producto';
 import { Cliente } from './cliente';
 
 export class Celda {
-    constructor(public producto?: Producto, public cantidad?: number, public precioFinal ?: number) {
+    constructor(public producto?: Producto, public cantidad?: number, public precioFinal?: number) {
     }
 
     get nombreProducto() {
         return this.producto.nombre
     }
-
-    getPrecioFinal(cliente: Cliente): number {
-        return this.precioFinal
+    // o agregar getter y setter precioFinal eliminando la variable precioFinal
+    setPrecioFinal(cliente: Cliente) {
+        this.precioFinal = this.producto.precioBase + cliente.gananciaProducto(this.producto.id)
     }
-    // return this.producto.precioBase + cliente.getGananciaProducto(this.producto.id)
 
-    setPrecioFinal(valorFinal: number, cliente: Cliente) {
-        let ganancia = valorFinal - this.producto.precioBase
+    asignarGananciaCliente(cliente: Cliente) {
+        let ganancia
+        ganancia = this.precioFinal - this.producto.precioBase
         if (ganancia <= 0) {
-            throw ("El precio final debe ser mayor a " + this.producto.precioBase)
+            throw "El precio final de " + this.producto.nombre + " debe ser mayor a " + this.producto.precioBase
         }
         cliente.asignarGanancia(this.producto.id, ganancia)
     }
 
     getGanancia(cliente: Cliente): number {
-        return cliente.getGananciaProducto(this.producto.id)
-    }
-
-    getPrecioCelda(cliente: Cliente) {
-        return this.getPrecioFinal(cliente) * this.cantidad
+        return cliente.gananciaProducto(this.producto.id)
     }
 
     getTest() {

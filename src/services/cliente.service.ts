@@ -46,7 +46,26 @@ export class ClienteService implements IClienteService {
   }
 }
 
+@Injectable({
+  providedIn: 'root'
+})
 export class StubClienteService implements IClienteService {
+
+  cliente: Cliente
+
+  initCliente() {
+    this.cliente = null
+  }
+
+  getClienteById(id): Cliente {
+    return this.clientes.find(cliente => cliente.id == id)
+  }
+
+  async nuevoCliente(cliente: Cliente) {
+    // id numero random menor a 20 y mayor a 1
+    cliente.id = Math.floor((Math.random() * 20) + 1)
+    this.clientes.push(cliente)
+  }
 
   clientes: Array<Cliente> = []
 
@@ -67,8 +86,17 @@ export class StubClienteService implements IClienteService {
     return this.clientes
   }
 
-  actualizarCliente(cliente: Cliente) {
-    this.clientes.push(cliente)
+  async actualizarCliente(cliente: Cliente) {
+    let updateClient = this.clientes.find(this.findIndexToUpdate, cliente.id) //como funciona???
+    // let updateClient = this.clientes.find(clienteBuscado => this.findIndexToUpdate(cliente, clienteBuscado))
+    let index = this.clientes.indexOf(updateClient)
+    this.clientes[index] = cliente
+
+  }
+
+  findIndexToUpdate(cliente, clienteBuscado) {
+    // return cliente.id === clienteBuscado.id;
+    return cliente.id === this;
   }
 
 }

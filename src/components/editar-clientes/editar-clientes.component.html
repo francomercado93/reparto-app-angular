@@ -1,24 +1,18 @@
 <div class="example-container">
-  <mat-form-field *ngIf="noIngresoNuevoCliente()">
-    <mat-select placeholder="Seleccionar cliente" [(ngModel)]="celda.cliente">
-      <mat-option [value]="cliente" *ngFor="let cliente of clientes">{{cliente.nombre}}</mat-option>
-    </mat-select>
+  <div class="alert alert-danger animate-repeat" *ngFor="let error of errors">{{error}}</div>
+  <mat-form-field class="input-precios" appearance="outline">
+    <input matInput placeholder="Nombre nuevo cliente" [(ngModel)]="nuevoNombre">
   </mat-form-field>
-  <mat-form-field>
-    <input class="form" matInput placeholder="Nombre" [(ngModel)]="nuevoNombre" [value]="celda.cliente?.nombre">
-  </mat-form-field>
-  <!-- <mat-form-field>
-    <mat-select placeholder="Seleccionar producto" [(ngModel)]="celda.producto">
-      <mat-option [value]="producto" *ngFor="let producto of productos">{{producto.nombre}}</mat-option>
-    </mat-select>
-  </mat-form-field>
-  <mat-form-field *ngIf="celda.cliente && celda.producto">
-    <input class="form" matInput type="number" placeholder="Nuevo precio" [value]="precioFinal()"
-      [(ngModel)]="nuevoPrecioFinal">
-  </mat-form-field> -->
+  <p>
+    <mat-form-field class="input-precios" appearance="outline" *ngFor="let celda of celdas">
+      <mat-label>{{celda.producto.nombre}}</mat-label>
+      <!-- TODO: Mostrar error en matInput -->
+      <input type="number" matInput placeholder="Nuevo precio" [(ngModel)]="celda.precioFinal">
+      <span matPrefix>$&nbsp;</span>
+    </mat-form-field>
+  </p>
   <div class="example-button-row">
-    <button class="form" mat-raised-button color="primary" (click)="actualizarCliente()">Aceptar</button>
+    <button class="form" mat-raised-button color="primary" (click)="aceptar()">Aceptar</button>
     <button class="form" mat-raised-button color="accent" (click)="volver()">Cancelar</button>
   </div>
 </div>
-<!-- <div *ngFor="let error of errors">Error: {{error}}</div> -->

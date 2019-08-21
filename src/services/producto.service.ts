@@ -6,6 +6,8 @@ import { map, catchError } from 'rxjs/operators'
 import { Observable, of } from 'rxjs';
 import { Producto } from 'src/domain/producto';
 
+
+
 export interface IProductoService {
   getProductos(): Promise<any>
   actualizarProducto(productoSeleccionado: Producto): void
@@ -30,17 +32,23 @@ export class ProductoService implements IProductoService {
     return Object.assign({}, productoSeleccionado);
   }
 }
+
+@Injectable({
+  providedIn: 'root'
+})
 export class StubProductoService implements IProductoService {
-  productos: Array<Producto> = [new Producto(1, "Miga", 180), new Producto(2, "Arabe", 50)]
+  productos: Array<Producto> = [new Producto(1, "Miga", 180), new Producto(2, "Arabe", 50), new Producto(3, "Arabe negro", 50)]
   constructor() { }
 
   async getProductos() {
     return this.productos
   }
-  actualizarProducto(productoSeleccionado: Producto) {
+
+  async actualizarProducto(productoSeleccionado: Producto) {
     let updateProduct = this.productos.find(this.findIndexToUpdate, productoSeleccionado.id)
     let index = this.productos.indexOf(updateProduct)
     this.productos[index] = productoSeleccionado
+    
   }
 
   findIndexToUpdate(producto) {

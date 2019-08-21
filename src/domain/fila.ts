@@ -16,16 +16,27 @@ export class Fila {
         return this.celdas.map(celda => celda.producto)
     }
 
-    constructor(public id?: number, public cliente?: Cliente, public celdas?: Array<Celda>) {}
+    constructor(public id?: number, public cliente?: Cliente, public celdas?: Array<Celda>) { }
+
+    crearCeldas(productos: Producto[]) {
+        this.celdas = new Array
+        productos.forEach(producto => this.celdas.push(new Celda(producto, 1)))
+        this.settearPreciosFinales()
+    }
+    settearPreciosFinales() {
+        this.celdas.forEach(celda => celda.setPrecioFinal(this.cliente))
+    }
+
+
+
+    asignarGanancias() {
+        this.celdas.forEach(celda => celda.asignarGananciaCliente(this.cliente))
+    }
 
     get subtotal() {
         // REVISAR!!!!
         return this.celdas.reduce(sumarTotalCeldas)
         // return this.celdas.reduce(this.sumarCeldas)
-    }
-    crearCeldas(productos: Producto[]) {
-        this.celdas = new Array
-        productos.forEach(producto => this.celdas.push(new Celda(producto, 1)))
     }
 
     sumarTotalCeldas(total, celda) {
@@ -35,7 +46,7 @@ export class Fila {
     agregarCelda(celda: Celda) {
         this.celdas.push(celda)
     }
-    get productosCeldas(){
+    get productosCeldas() {
         return this.celdas.map(celda => celda.producto)
     }
     get gananciaFila() {

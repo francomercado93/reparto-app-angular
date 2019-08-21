@@ -1,20 +1,19 @@
 import { mapToObj } from './mapToObj';
 
 export class Cliente {
+  get gananciaPan(): number {
+      return 3
+  }
 
     constructor(public id?: number, public nombre?: string, public ganancias?: Map<number, number>) {
         this.ganancias = new Map
-    }
-
-    cambiarNombre(nuevoNombre: string) {
-        this.nombre = nuevoNombre
     }
 
     asignarGanancia(idProducto: number, ganancia: number) {
         this.ganancias.set(idProducto, ganancia)
     }
 
-    getGananciaProducto(id: number): number {
+    gananciaProducto(id: number): number {
         return this.ganancias.get(id)
     }
     

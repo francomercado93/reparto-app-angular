@@ -1,0 +1,6 @@
+Cuando aumenta el precio base aumenta el precio final de un cliente, y la ganancia se mantiene
+Ejemplo
+Precio final anterior 200
+Precio base anterior 180
+Precio base nuevo 210
+Precio final nuevo => 240

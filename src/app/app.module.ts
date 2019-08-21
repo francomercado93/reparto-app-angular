@@ -13,6 +13,8 @@ import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { MatCardModule } from '@angular/material/card';
+
 // import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
@@ -34,9 +36,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatInputModule,
     MatFormFieldModule,
     HttpClientModule,
-    // MatSnackBarModule,
     FormsModule,
-
+    MatCardModule,
     AppRoutingModule
   ],
   providers: [],
