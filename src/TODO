@@ -4,3 +4,11 @@ Precio final anterior 200
 Precio base anterior 180
 Precio base nuevo 210
 Precio final nuevo => 240
+
+Problema es cuando el precio base varia dependiendop del proveedor.
+Producto tendria que tener un proveedor?
+y el que define el precio es el proveedor.
+
+Todo: si el precioFinal es igual al precioBase mostrar un cartel que avise que tiene que cambiar el precio producto
+
+todos los clientes deberian tener todos los productos, o solo los que vende? ventajas y desventajas de cada opcion

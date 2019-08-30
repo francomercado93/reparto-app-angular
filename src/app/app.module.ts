@@ -14,10 +14,7 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
-
-// import { MatSnackBarModule } from '@angular/material/snack-bar';
-
-
+import { MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -38,6 +35,7 @@ import { MatCardModule } from '@angular/material/card';
     HttpClientModule,
     FormsModule,
     MatCardModule,
+    MatTabsModule,
     AppRoutingModule
   ],
   providers: [],

@@ -16,18 +16,17 @@ export class Fila {
         return this.celdas.map(celda => celda.producto)
     }
 
-    constructor(public id?: number, public cliente?: Cliente, public celdas?: Array<Celda>) { }
+    constructor(public cliente?: Cliente, public celdas?: Array<Celda>) { }
 
     crearCeldas(productos: Producto[]) {
         this.celdas = new Array
-        productos.forEach(producto => this.celdas.push(new Celda(producto, 1)))
+        productos.forEach(producto => this.celdas.push(new Celda(producto)))
         this.settearPreciosFinales()
     }
+
     settearPreciosFinales() {
         this.celdas.forEach(celda => celda.setPrecioFinal(this.cliente))
     }
-
-
 
     asignarGanancias() {
         this.celdas.forEach(celda => celda.asignarGananciaCliente(this.cliente))

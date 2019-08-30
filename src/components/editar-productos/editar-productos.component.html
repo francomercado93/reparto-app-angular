@@ -2,16 +2,11 @@
   <mat-form-field>
     <mat-select placeholder="Seleccionar producto" [(ngModel)]="productoSeleccionado">
       <mat-option [value]="producto" *ngFor="let producto of productos">{{producto.nombre}}</mat-option>
-      <!-- <mat-option value="miga">Miga</mat-option>
-      <mat-option value="arabe">Arabe</mat-option>
-      <mat-option value="arabe-negro">Arabe negro</mat-option> -->
     </mat-select>
   </mat-form-field>
   <mat-form-field>
     <input class="form" matInput type="number" placeholder="Precio base" [(ngModel)]="nuevoPrecio"
       [value]="productoSeleccionado?.precioBase">
-    <!-- [(ngModel)]="productoSeleccionado.precioBase")] -->
-    <!-- [value]="productoSeleccionado?.precioBase" -->
   </mat-form-field>
   <div class="example-button-row">
     <button class="form" mat-raised-button color="primary" (click)="actualizar()">Aceptar</button>

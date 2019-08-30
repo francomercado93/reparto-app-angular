@@ -13,12 +13,18 @@
         <tr>
           <th scope="col">Id</th>
           <th scope="col">Cliente</th>
+          <th scope="col">Precio Miga</th>
+          <th scope="col">Precio arabe blanco</th>
+          <th scope="col">Precio arabe negro</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let cliente of clientes">
-          <td> <a [routerLink]="['/editar-cliente', cliente.id]">{{cliente.id}}</a></td>
-          <td><a [routerLink]="['/editar-cliente', cliente.id]" id="nombre{{cliente.id}}">{{cliente.nombre}}</a></td>
+        <tr *ngFor="let fila of planilla.filas">
+          <td> <a [routerLink]="['/editar-cliente', fila.cliente.id]">{{fila.cliente.id}}</a></td>
+          <td><a [routerLink]="['/editar-cliente', fila.cliente.id]"
+              id="nombre{{fila.cliente.id}}">{{fila.cliente.nombre}}</a></td>
+              <!-- Todo: si el precioFinal es igual al precioBase mostrar un cartel que avise que tiene que cambiar el precio producto -->
+          <td *ngFor="let celda of fila.celdas">{{celda.precioFinal }}</td>
         </tr>
       </tbody>
     </table>

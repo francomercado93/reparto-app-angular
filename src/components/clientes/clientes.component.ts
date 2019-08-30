@@ -4,13 +4,10 @@ import { Router } from '@angular/router';
 import { Cliente } from 'src/domain/cliente';
 import { Producto } from 'src/domain/producto';
 import { Fila } from 'src/domain/fila';
+import { Planilla } from 'src/domain/planilla';
+import { StubProductoService } from 'src/services/producto.service';
+import { mostrarError } from 'src/domain/mostrarErros';
 
-
-
-function mostrarError(component, error) {
-  console.log("error", error)
-  component.errors.push(error._body)
-}
 @Component({
   selector: 'app-clientes',
   templateUrl: './clientes.component.html',
@@ -20,16 +17,18 @@ function mostrarError(component, error) {
 export class ClientesComponent implements OnInit {
 
   clientes: Cliente[]
+  planilla: Planilla = new Planilla(1)
+  productos: Producto[]
 
-  // Para mostrar los precios es necesario crear una planilla(con filas para cada cliente)
-
-  constructor(private clienteService: StubClienteService, private router: Router) { }
+  constructor(private clienteService: StubClienteService, private productoService: StubProductoService, private router: Router) { }
 
   async ngOnInit() {
     try {
       this.router.routeReuseStrategy.shouldReuseRoute = () => false
       this.clientes = await this.clienteService.getClientes()
-    } catch (error) {
+      this.productos = await this.productoService.getProductos()
+      this.planilla.initFilas(this.clientes, this.productos)
+    } catch (error) { 
       mostrarError(this, error)
     }
   }

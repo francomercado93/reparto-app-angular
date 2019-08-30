@@ -74,8 +74,10 @@ export class StubClienteService implements IClienteService {
     let laLibertad = new Cliente(20, "La libertad")
     loDePepe.asignarGanancia(1, 20)
     loDePepe.asignarGanancia(2, 5)
+    loDePepe.asignarGanancia(3, 0)
     laLibertad.asignarGanancia(1, 50)
     laLibertad.asignarGanancia(2, 100)
+    laLibertad.asignarGanancia(3, 0)
     this.clientes = [loDePepe, laLibertad]
   }
   constructor() { }

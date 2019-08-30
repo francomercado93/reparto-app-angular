@@ -37,7 +37,7 @@ export class ProductoService implements IProductoService {
   providedIn: 'root'
 })
 export class StubProductoService implements IProductoService {
-  productos: Array<Producto> = [new Producto(1, "Miga", 180), new Producto(2, "Arabe", 50), new Producto(3, "Arabe negro", 50)]
+  productos: Array<Producto> = [new Producto(1, "Miga", 160), new Producto(2, "Arabe", 50), new Producto(3, "Arabe negro", 50)]
   constructor() { }
 
   async getProductos() {
