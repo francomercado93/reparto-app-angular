@@ -11,15 +11,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToolbarComponent } from 'src/components/toolbar/toolbar.component';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
-import { MatTabsModule} from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
+import { AgregarFilaComponent } from 'src/components/agregar-fila/agregar-fila.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ToolbarComponent,
+    AgregarFilaComponent,
     routingComponents
   ],
   imports: [
@@ -36,6 +38,7 @@ import { MatTabsModule} from '@angular/material/tabs';
     FormsModule,
     MatCardModule,
     MatTabsModule,
+    ReactiveFormsModule,
     AppRoutingModule
   ],
   providers: [],

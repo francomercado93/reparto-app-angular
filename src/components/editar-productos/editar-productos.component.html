@@ -1,4 +1,4 @@
-<div class="example-container">
+<!-- <div class="example-container">
   <mat-form-field>
     <mat-select placeholder="Seleccionar producto" [(ngModel)]="productoSeleccionado">
       <mat-option [value]="producto" *ngFor="let producto of productos">{{producto.nombre}}</mat-option>
@@ -12,4 +12,16 @@
     <button class="form" mat-raised-button color="primary" (click)="actualizar()">Aceptar</button>
     <button class="form" mat-raised-button color="accent" (click)="volver()">Cancelar</button>
   </div>
-</div>
+</div> -->
+<form [formGroup]="listaProdsForm" (ngSubmit)="onSubmit()">
+
+  <div formArrayName="prods">
+    <div *ngFor="let prod of prods.controls; let i=index">
+      <mat-form-field>
+        <input class="form" matInput type="number" placeholder="Precio base" [formControlName]="i">
+      </mat-form-field>
+    </div>
+  </div>
+  <button class="form" mat-raised-button color="primary" type="submit">Aceptar</button>
+  <button class="form" mat-raised-button color="accent" (click)="volver()">Cancelar</button>
+</form>

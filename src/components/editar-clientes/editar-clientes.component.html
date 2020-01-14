@@ -1,18 +1,32 @@
-<div class="example-container">
+<!-- <div class="example-container">
   <div class="alert alert-danger animate-repeat" *ngFor="let error of errors">{{error}}</div>
   <mat-form-field class="input-precios" appearance="outline">
     <input matInput placeholder="Nombre nuevo cliente" [(ngModel)]="nuevoNombre">
   </mat-form-field>
-  <p>
-    <mat-form-field class="input-precios" appearance="outline" *ngFor="let celda of celdas">
-      <mat-label>{{celda.producto.nombre}}</mat-label>
-      <!-- TODO: Mostrar error en matInput -->
-      <input type="number" matInput placeholder="Nuevo precio" [(ngModel)]="celda.precioFinal">
-      <span matPrefix>$&nbsp;</span>
-    </mat-form-field>
-  </p>
+  
   <div class="example-button-row">
     <button class="form" mat-raised-button color="primary" (click)="aceptar()">Aceptar</button>
     <button class="form" mat-raised-button color="accent" (click)="volver()">Cancelar</button>
   </div>
-</div>
+</div> -->
+
+<form [formGroup]="clienteForm" (ngSubmit)="onSubmit()" class="example-container">
+  <mat-form-field appearance="outline">
+    <input matInput placeholder="Nombre nuevo cliente" formControlName="nombre" name="nombre" autofocus
+      placeholder="Ingrese un nombre de cliente">
+    <mat-error *ngIf="nombre.invalid">{{getErrorMessage() }}</mat-error>
+  </mat-form-field>
+
+  <!-- <p>
+      <mat-form-field class="input-precios" appearance="outline" *ngFor="let celda of celdas">
+        <mat-label>{{celda.producto.nombre}}</mat-label>
+        <input type="number" matInput placeholder="Nuevo precio" [(ngModel)]="celda.precioFinal">
+        <span matPrefix>$&nbsp;</span>
+      </mat-form-field>
+    </p> -->
+
+  <div class="example-button-row">
+    <button class="form" mat-raised-button color="primary" type="submit">Aceptar</button>
+    <button class="form" mat-raised-button color="accent" type="button" (click)="volver()">Cancelar</button>
+  </div>
+</form>

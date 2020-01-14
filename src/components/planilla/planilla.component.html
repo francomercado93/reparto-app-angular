@@ -1,6 +1,7 @@
 <mat-tab-group>
   <mat-tab label="Planilla">
 
+
     <!-- <div class="card">
       <div class="card-cascade wider text-center">
         <div class="card-header">
@@ -36,65 +37,6 @@
     </div> -->
   </mat-tab>
   <mat-tab label="Agregar fila">
-    <!-- #filaForm="ngForm"(ngSubmit)="agregarFila(filaForm)" -->
-    <form class="form-nueva-fila">
-      <div class="row">
-        <div class="col-sm-10">
-          <mat-form-field appearance="fill" class="full-width">
-            <mat-select placeholder="Seleccionar cliente" [(ngModel)]="nuevaFila.cliente" name="cliente"
-              (ngModelChange)="crearCeldas()">
-              <mat-option [value]="cliente" *ngFor="let cliente of clientes">
-                {{cliente.nombre}}</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-        <div class="col-sm">
-          <button mat-raised-button color="accent" class="full-width clean-button">
-            Limpiar
-          </button>
-        </div>
-      </div>
-      <div *ngIf="nuevaFila.cliente" class="mt-2">
-        <div class="row">
-          <div class="col-sm" *ngFor="let celda of nuevaFila.celdas">
-            <mat-form-field appearance="outline" class="full-width">
-              <mat-label>Cantidad de {{celda.producto.nombre}}</mat-label>
-              <input type="number" matInput placeholder="Cantidad" name="cantidad" [(ngModel)]="celda.cantidad">
-            </mat-form-field>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm">
-            <mat-form-field appearance="outline" class="full-width" color="accent">
-              <mat-label>Pago</mat-label>
-              <input type="number" matInput placeholder="Pago" name="pago" [(ngModel)]="planilla.pago">
-            </mat-form-field>
-          </div>
-          <div class="col-sm">
-            <mat-form-field appearance="outline" class="full-width">
-              <mat-label>Observaciones</mat-label>
-              <!-- Porque hay que agregar name ? -->
-              <input type="number" matInput placeholder="Observaciones" name="observaciones"
-                [(ngModel)]="planilla.observaciones">
-            </mat-form-field>
-          </div>
-        </div>
-
-        <div class="row">
-          <mat-card class="full-width card-subtotal">
-            <mat-card-title color="accent">Subtotal fila: $2500</mat-card-title>
-          </mat-card>
-        </div>
-        <!-- <br/> -->
-        <div class="row">
-          <div class="col button-row">
-            <button mat-raised-button color="primary" class="add-button clean-button">
-              Agregar
-            </button>
-          </div>
-        </div>
-      </div>
-
-    </form>
+    <app-agregar-fila></app-agregar-fila>
   </mat-tab>
 </mat-tab-group>

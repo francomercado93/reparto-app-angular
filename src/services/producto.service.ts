@@ -48,7 +48,7 @@ export class StubProductoService implements IProductoService {
     let updateProduct = this.productos.find(this.findIndexToUpdate, productoSeleccionado.id)
     let index = this.productos.indexOf(updateProduct)
     this.productos[index] = productoSeleccionado
-    
+
   }
 
   findIndexToUpdate(producto) {
