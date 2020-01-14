@@ -13,15 +13,21 @@
     <button class="form" mat-raised-button color="accent" (click)="volver()">Cancelar</button>
   </div>
 </div> -->
-<form [formGroup]="listaProdsForm" (ngSubmit)="onSubmit()">
-
-  <div formArrayName="prods">
-    <div *ngFor="let prod of prods.controls; let i=index">
-      <mat-form-field>
-        <input class="form" matInput type="number" placeholder="Precio base" [formControlName]="i">
-      </mat-form-field>
+<div class="example-container">
+  <form [formGroup]="listaProdsForm" (ngSubmit)="onSubmit()">
+    <div formArrayName="prods" *ngFor="let prod of listaProdsForm.get('prods').controls; let i=index">
+      <div [formGroupName]="i">
+        <mat-form-field>
+          <input matInput type="number" placeholder="Precio base" formControlName="precioBase">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="nombre">
+        </mat-form-field>
+      </div>
     </div>
-  </div>
-  <button class="form" mat-raised-button color="primary" type="submit">Aceptar</button>
-  <button class="form" mat-raised-button color="accent" (click)="volver()">Cancelar</button>
-</form>
+    <div class="example-button-row">
+      <button class="form" mat-raised-button color="primary" type="submit">Aceptar</button>
+      <button class="form" mat-raised-button color="accent" type="button" (click)="volver()">Cancelar</button>
+    </div>
+  </form>
+</div>

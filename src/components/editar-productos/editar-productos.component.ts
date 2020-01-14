@@ -26,12 +26,10 @@ export class EditarProductosComponent implements OnInit {
 
   async ngOnInit() {
     this.createListProdForm()
-    const prods = []
     try {
       this.router.routeReuseStrategy.shouldReuseRoute = () => false
       this.productos = await this.productoService.getProductos()
-      // prods = this.formBuilder.array(this.getProds().map(prod => this.formBuilder.group(prod)))
-      // this.productos.forEach(prod => this.addProdForm(prod))
+      this.productos.forEach(prod => this.addProdForm(prod))
     } catch (error) {
       mostrarError(this, error)
     }
@@ -40,11 +38,11 @@ export class EditarProductosComponent implements OnInit {
   createListProdForm() {
     this.listaProdsForm = this.formBuilder.group({
       prods: this.formBuilder.array([
-        // this.createProdForm()
       ])
     })
   }
 
+  //No logro hacerlo funcionar en el html
   createProdForm() {
     return this.formBuilder.group({
       id: this.formBuilder.control(''),
@@ -76,7 +74,8 @@ export class EditarProductosComponent implements OnInit {
   }
   volver() {
 
-    console.log(this.listaProdsForm.value)
+    console.log(this.prods.controls)
+
     // this.router.navigate(['planilla'])
   }
 
