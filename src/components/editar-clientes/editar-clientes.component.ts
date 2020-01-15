@@ -34,7 +34,7 @@ export class EditarClienteComponent implements OnInit {
   }
 
   async ngOnInit() {
-    // this.setValidators()
+    this.setValidators()
 
     this.fila.cliente = new Cliente()
     // Averiguar diferencia entre this.route.snapshot.params.id y  this.route.params.subscribe(params => {...
@@ -66,7 +66,8 @@ export class EditarClienteComponent implements OnInit {
   private setValidators() {
     this.clienteForm = new FormGroup({
       id: new FormControl(''),
-      nombre: new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern('[a-zA-Z ]+')])
+      nombre: new FormControl('', [Validators.required, Validators.minLength(3),
+      Validators.pattern('[a-zA-Z1-9 ]+')])
     })
   }
 

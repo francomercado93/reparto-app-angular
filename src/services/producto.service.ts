@@ -44,6 +44,10 @@ export class StubProductoService implements IProductoService {
     return this.productos
   }
 
+  async getProductoId(id: string) {
+    return this.productos.find(producto => producto.id == parseInt(id))
+  }
+
   async actualizarProducto(productoSeleccionado: Producto) {
     let updateProduct = this.productos.find(this.findIndexToUpdate, productoSeleccionado.id)
     let index = this.productos.indexOf(updateProduct)

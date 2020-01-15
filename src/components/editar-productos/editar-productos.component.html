@@ -1,33 +1,21 @@
-<!-- <div class="example-container">
-  <mat-form-field>
-    <mat-select placeholder="Seleccionar producto" [(ngModel)]="productoSeleccionado">
-      <mat-option [value]="producto" *ngFor="let producto of productos">{{producto.nombre}}</mat-option>
-    </mat-select>
-  </mat-form-field>
-  <mat-form-field>
-    <input class="form" matInput type="number" placeholder="Precio base" [(ngModel)]="nuevoPrecio"
-      [value]="productoSeleccionado?.precioBase">
-  </mat-form-field>
-  <div class="example-button-row">
-    <button class="form" mat-raised-button color="primary" (click)="actualizar()">Aceptar</button>
-    <button class="form" mat-raised-button color="accent" (click)="volver()">Cancelar</button>
-  </div>
-</div> -->
-<div class="example-container">
-  <form [formGroup]="listaProdsForm" (ngSubmit)="onSubmit()">
-    <div formArrayName="prods" *ngFor="let prod of listaProdsForm.get('prods').controls; let i=index">
-      <div [formGroupName]="i">
-        <mat-form-field>
-          <input matInput type="number" placeholder="Precio base" formControlName="precioBase">
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput formControlName="nombre">
-        </mat-form-field>
-      </div>
-    </div>
-    <div class="example-button-row">
-      <button class="form" mat-raised-button color="primary" type="submit">Aceptar</button>
-      <button class="form" mat-raised-button color="accent" type="button" (click)="volver()">Cancelar</button>
-    </div>
-  </form>
-</div>
+<table mat-table [dataSource]="productos">
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> ID </th>
+    <td mat-cell *matCellDef="let producto"> {{producto.id}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="nombre">
+    <th mat-header-cell *matHeaderCellDef>Nombre</th>
+    <td mat-cell *matCellDef="let producto">
+      <a [routerLink]="['/editar', producto.id]">{{producto.nombre}} </a>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="precioBase">
+    <th mat-header-cell *matHeaderCellDef> Precio </th>
+    <td mat-cell *matCellDef="let producto"> {{producto.precioBase}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
