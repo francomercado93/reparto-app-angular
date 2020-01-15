@@ -10,6 +10,8 @@
   </div>
 </div> -->
 
+
+<!-- 
 <form [formGroup]="clienteForm" (ngSubmit)="onSubmit()" class="example-container">
   <mat-form-field appearance="outline">
     <input matInput placeholder="Nombre nuevo cliente" formControlName="nombre" name="nombre" autofocus
@@ -17,16 +19,29 @@
     <mat-error *ngIf="nombre.invalid">{{getErrorMessage() }}</mat-error>
   </mat-form-field>
 
-  <!-- <p>
-      <mat-form-field class="input-precios" appearance="outline" *ngFor="let celda of celdas">
-        <mat-label>{{celda.producto.nombre}}</mat-label>
-        <input type="number" matInput placeholder="Nuevo precio" [(ngModel)]="celda.precioFinal">
-        <span matPrefix>$&nbsp;</span>
-      </mat-form-field>
-    </p> -->
+  <p>
+    <mat-form-field class="input-precios" appearance="outline" *ngFor="let celda of celdas">
+      <mat-label>{{celda.producto.nombre}}</mat-label>
+      <input type="number" matInput placeholder="Nuevo precio" [(ngModel)]="celda.precioFinal">
+      <span matPrefix>$&nbsp;</span>
+    </mat-form-field>
+  </p>
 
   <div class="example-button-row">
     <button class="form" mat-raised-button color="primary" type="submit">Aceptar</button>
     <button class="form" mat-raised-button color="accent" type="button" (click)="volver()">Cancelar</button>
   </div>
-</form>
+</form> -->
+
+<div [formGroup]="listaProdForm">
+  <div formArrayName="prods" *ngFor="let prod of prods.controls; let i=index">
+    <div [formGroupName]="i">
+      <mat-form-field class="input-precios" appearance="outline">
+        <input type="number" matInput placeholder="Nuevo precio" formControlName="precioBase">
+        <mat-error>{{getErrorMessagePrecioBase()}}</mat-error>
+        <span matPrefix>$&nbsp;</span>
+      </mat-form-field>
+    </div>
+  </div>
+  <button class="form" mat-raised-button color="accent" type="button" (click)="volver()">Cancelar</button>
+</div>
