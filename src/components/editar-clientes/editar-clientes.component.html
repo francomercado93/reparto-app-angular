@@ -32,16 +32,3 @@
     <button class="form" mat-raised-button color="accent" type="button" (click)="volver()">Cancelar</button>
   </div>
 </form> -->
-
-<div [formGroup]="listaProdForm">
-  <div formArrayName="prods" *ngFor="let prod of prods.controls; let i=index">
-    <div [formGroupName]="i">
-      <mat-form-field class="input-precios" appearance="outline">
-        <input type="number" matInput placeholder="Nuevo precio" formControlName="precioBase">
-        <mat-error>{{getErrorMessagePrecioBase()}}</mat-error>
-        <span matPrefix>$&nbsp;</span>
-      </mat-form-field>
-    </div>
-  </div>
-  <button class="form" mat-raised-button color="accent" type="button" (click)="volver()">Cancelar</button>
-</div>

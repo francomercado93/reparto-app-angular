@@ -1,21 +1,22 @@
-<table mat-table [dataSource]="productos">
-  <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef> ID </th>
-    <td mat-cell *matCellDef="let producto"> {{producto.id}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="nombre">
-    <th mat-header-cell *matHeaderCellDef>Nombre</th>
-    <td mat-cell *matCellDef="let producto">
-      <a [routerLink]="['/editar', producto.id]">{{producto.nombre}} </a>
-    </td>
-  </ng-container>
-
-  <ng-container matColumnDef="precioBase">
-    <th mat-header-cell *matHeaderCellDef> Precio </th>
-    <td mat-cell *matCellDef="let producto"> {{producto.precioBase}} </td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+<form [formGroup]="listaProdForm" (ngSubmit)="onSubmit()" class="container">
+  <div formArrayName="prods" *ngFor="let prod of prods.controls; let i=index">
+    <div [formGroupName]="i" class="form-producto">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Nombre del producto</mat-label>
+        <input matInput placeholder="Ingrese nombre" formControlName="nombre">
+        <mat-error *ngIf="prod.invalid">{{getErrorMessageNombre(prod)}}</mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Precio del producto</mat-label>
+        <input type="number" matInput placeholder="Nuevo precio" formControlName="precioBase">
+        <mat-error *ngIf="prod.invalid">{{getErrorMessagePrecioBase(prod)}}</mat-error>
+        <span matPrefix>$&nbsp;</span>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="button-row">
+    <button [disabled]="!listaProdForm.valid || listaProdForm.pristine || listaProdForm.untouched" autofocus
+      class="button" mat-raised-button color="primary" type="submit">Aceptar</button>
+    <button class="button" mat-raised-button color="accent" type="button" (click)="volver()">Cancelar</button>
+  </div>
+</form>

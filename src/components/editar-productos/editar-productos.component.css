@@ -1,4 +1,4 @@
-.example-container {
+.container {
     display: flex;
     flex-direction: column;
     /* justify-content: center;
@@ -20,6 +20,30 @@
   justify-content: center;
 }
 
-table {
+.form-producto {
+  /* flex-direction: column; */
+  display: flex;
+  /* justify-content: center;
+  align-items: center; */
+  /* padding: 2rem; */
+}
+
+.form-producto > * {
   width: 100%;
+}
+
+.button-row{
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  margin: 1rem;
+  width: 20rem;
+}
+
+.form-field{
+  width: 50%;
+  height: 50%;
+  margin: 0.5em;
 }

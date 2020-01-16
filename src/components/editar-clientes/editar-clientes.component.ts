@@ -26,7 +26,6 @@ export class EditarClienteComponent implements OnInit {
   nuevoNombre: string
   alta: boolean = false
   clienteForm: FormGroup
-  listaProdForm: FormGroup
 
   constructor(private clienteService: StubClienteService, private productoService: StubProductoService,
     private router: Router, private route: ActivatedRoute, private formBuilder: FormBuilder) {
@@ -35,44 +34,20 @@ export class EditarClienteComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.listaProdForm = this.formBuilder.group({
-      prods: this.formBuilder.array([
-      ])
-    })
+
     try {
       this.productos = await this.productoService.getProductos()
-      this.productos.forEach(prod => this.prods.push(this.addProdForm(prod)))
     }
     catch (error) {
       mostrarError(this, error)
     }
   }
 
-  addProdForm(prod: Producto) {
-    var form = this.createProdForm()
-    form.setValue(prod)
-    return form
-  }
-
-  get prods() {
-    return this.listaProdForm.get('prods') as FormArray
-  }
-
-  createProdForm() {
-    return this.formBuilder.group({
-      id: this.formBuilder.control(''),
-      nombre: this.formBuilder.control('', [Validators.required, Validators.pattern('[a-zA-Z ]+')]),
-      precioBase: this.formBuilder.control('', Validators.required)
-    })
-  }
 
   getTest() {
     return false
   }
 
-  getErrorMessagePrecioBase() {
-    // return this.
-  }
 
   // this.setValidators()
 
@@ -129,7 +104,7 @@ export class EditarClienteComponent implements OnInit {
   }
 
   volver() {
-    console.log(this.prods[1])
+    // Probar esto
     // this.router.navigate(['/clientes'])
   }
 

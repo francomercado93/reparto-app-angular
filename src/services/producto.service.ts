@@ -58,4 +58,8 @@ export class StubProductoService implements IProductoService {
   findIndexToUpdate(producto) {
     return producto.id === this;
   }
+
+  async actualizarListaProductos(productos: Producto[]) {
+    productos.forEach(prod => this.actualizarProducto(prod))
+  }
 }
