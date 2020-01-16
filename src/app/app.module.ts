@@ -19,6 +19,7 @@ import { ToolbarComponent } from 'src/components/toolbar/toolbar.component';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

@@ -57,7 +57,7 @@ export class StubClienteService implements IClienteService {
     this.cliente = null
   }
 
-  getClienteById(id): Cliente {
+  async getClienteById(id: number) {
     return this.clientes.find(cliente => cliente.id == id)
   }
 
