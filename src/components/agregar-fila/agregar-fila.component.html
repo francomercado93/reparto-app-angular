@@ -26,9 +26,9 @@
     </div>
     <div class="row">
       <div class="col-sm">
-        <mat-form-field appearance="outline" class="full-width" color="accent">
+        <mat-form-field appearance="outline" class="full-width">
           <mat-label>Pago</mat-label>
-          <input type="number" matInput placeholder="Pago" name="pago" [(ngModel)]="planilla.pago">
+          <input type="number" matInput placeholder="Pago" name="pago" [(ngModel)]="nuevaFila.pago">
         </mat-form-field>
       </div>
       <div class="col-sm">
@@ -36,17 +36,16 @@
           <mat-label>Observaciones</mat-label>
           <!-- Porque hay que agregar name ? -->
           <input type="number" matInput placeholder="Observaciones" name="observaciones"
-            [(ngModel)]="planilla.observaciones">
+            [(ngModel)]="nuevaFila.observaciones">
         </mat-form-field>
       </div>
     </div>
 
     <div class="row">
       <mat-card class="full-width card-subtotal">
-        <mat-card-title color="accent">Subtotal fila: $2500</mat-card-title>
+        <mat-card-title color="accent">{{nuevaFila.subtotal}}</mat-card-title>
       </mat-card>
     </div>
-    <!-- <br/> -->
     <div class="row">
       <div class="col button-row">
         <button mat-raised-button color="primary" class="add-button clean-button">

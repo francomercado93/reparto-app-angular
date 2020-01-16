@@ -1,22 +1,14 @@
 import { Celda } from './celda';
 import { Cliente } from './cliente';
 import { Producto } from './producto';
-
-function sumarTotalCeldas(total, celda) {
-    return total + celda.getPrecioCelda(this.cliente);
-}
-
-function sumarGananciasCeldas(total, celda) {
-    return total + celda.getGanancia(this.cliente);
-}
-
 export class Fila {
 
     get productosCelda() {
         return this.celdas.map(celda => celda.producto)
     }
 
-    constructor(public cliente?: Cliente, public celdas?: Array<Celda>) { }
+    constructor(public cliente?: Cliente, public celdas?: Array<Celda>,
+        public pago?: number, public observaciones?: string) { }
 
     crearCeldas(productos: Producto[]) {
         this.celdas = new Array
@@ -33,8 +25,13 @@ export class Fila {
     }
 
     get subtotal() {
-        // REVISAR!!!!
-        return this.celdas.reduce(sumarTotalCeldas)
+        // if (this.celdas != null)
+        console.log(this.celdas.map(celda => celda.precioFinal))
+        return 0
+
+        // return this.celdas.map((celda1) => celda1.precioFinal + 0).reduce((p1, p2) => p1 + p2)
+        // else
+
         // return this.celdas.reduce(this.sumarCeldas)
     }
 
@@ -48,7 +45,7 @@ export class Fila {
     get productosCeldas() {
         return this.celdas.map(celda => celda.producto)
     }
-    get gananciaFila() {
-        return this.celdas.reduce(sumarGananciasCeldas)
-    }
+    // get gananciaFila() {
+    //     return this.celdas.reduce(sumarGananciasCeldas)
+    // }
 }
