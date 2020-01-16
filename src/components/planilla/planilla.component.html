@@ -1,5 +1,8 @@
 <mat-tab-group class="animated fadeIn">
   <mat-tab label="Planilla">
+    <button mat-raised-button color="primary" class="add-button clean-button" (click)="test()">
+      Test
+    </button>
 
 
     <!-- <div class="card">
@@ -37,6 +40,6 @@
     </div> -->
   </mat-tab>
   <mat-tab label="Agregar fila">
-    <app-agregar-fila></app-agregar-fila>
+    <app-agregar-fila [planilla]="planilla"></app-agregar-fila>
   </mat-tab>
 </mat-tab-group>

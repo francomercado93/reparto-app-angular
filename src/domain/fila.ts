@@ -25,7 +25,7 @@ export class Fila {
     }
 
     get subtotal() {
-        var listaPrecios = this.celdas.map(celda => celda.precioFinal)
+        var listaPrecios = this.celdas.map(celda => celda.subtotalCelda)
         return listaPrecios.reduce((a, b) => a + b)
     }
 

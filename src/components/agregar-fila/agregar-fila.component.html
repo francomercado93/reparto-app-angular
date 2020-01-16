@@ -10,17 +10,20 @@
       </mat-form-field>
     </div>
     <div class="col-sm">
-      <button mat-raised-button color="accent" class="full-width clean-button">
+      <button mat-raised-button color="accent" class="full-width clean-button" (click)="limpiar()">
         Limpiar
       </button>
     </div>
   </div>
-  <div *ngIf="nuevaFila.cliente" class="mt-2">
+  <div *ngIf="nuevaFila.cliente" class="mt-2 animated fadeInDown">
     <div class="row">
       <div class="col-sm" *ngFor="let celda of nuevaFila.celdas">
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Cantidad de {{celda.producto.nombre}}</mat-label>
-          <input type="number" matInput placeholder="Cantidad" name="cantidad" [(ngModel)]="celda.cantidad">
+          <input type="number" matInput placeholder="Cantidad" name="cantidad" [(ngModel)]="celda.cantidad"
+            #cantidad="ngModel" pattern="^[0-9]+$">
+          <!-- TODO: se muestra el mismo error para todas las celdas -->
+          <mat-error *ngIf="cantidad.invalid">Debe ingresar una cantidad mayor a cero</mat-error>
         </mat-form-field>
       </div>
     </div>
@@ -28,7 +31,9 @@
       <div class="col-sm">
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Pago</mat-label>
-          <input type="number" matInput placeholder="Pago" name="pago" [(ngModel)]="nuevaFila.pago">
+          <input type="number" matInput placeholder="Pago" [(ngModel)]="nuevaFila.pago" name="pago" #pago="ngModel"
+            pattern="^[0-9]+$">
+          <mat-error *ngIf="pago.invalid">Debe ingresar una cantidad mayor a cero</mat-error>
         </mat-form-field>
       </div>
       <div class="col-sm">
@@ -43,12 +48,12 @@
 
     <div class="row">
       <mat-card class="full-width card-subtotal">
-        <mat-card-title color="accent">$ {{nuevaFila.subtotal}}</mat-card-title>
+        <mat-card-title color="accent">Subtotal $ {{nuevaFila.subtotal}}</mat-card-title>
       </mat-card>
     </div>
     <div class="row">
       <div class="col button-row">
-        <button mat-raised-button color="primary" class="add-button clean-button">
+        <button mat-raised-button color="primary" class="add-button clean-button" (click)="agregarFila()">
           Agregar
         </button>
       </div>

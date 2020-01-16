@@ -16,4 +16,8 @@ export class Planilla {
         fila.crearCeldas(productos)
         return fila
     }
+    
+    crearNuevaFila(nuevaFila: Fila) {
+        this.filas.push(nuevaFila)
+    }
 }

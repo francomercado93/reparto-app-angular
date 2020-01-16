@@ -30,7 +30,10 @@ export class Celda {
         return cliente.gananciaProducto(this.producto.id)
     }
 
-    getTest() {
-        return 555
+    get subtotalCelda() {
+        if (this.precioFinal == null || this.cantidad == null) {
+            return 0
+        } else
+            return this.precioFinal * this.cantidad
     }
 }

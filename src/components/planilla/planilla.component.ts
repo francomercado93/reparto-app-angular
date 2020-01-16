@@ -38,4 +38,8 @@ export class PlanillaComponent implements OnInit {
     this.nuevaFila.crearCeldas(this.productos)
   }
 
+  test() {
+    console.log(this.planilla)
+  }
+
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Cliente } from 'src/domain/cliente';
 import { Producto } from 'src/domain/producto';
 import { Planilla } from 'src/domain/planilla';
@@ -15,9 +15,9 @@ import { mostrarError } from 'src/domain/mostrarErros';
 })
 export class AgregarFilaComponent implements OnInit {
 
+  @Input() planilla: Planilla
   clientes: Cliente[]
   productos: Producto[]
-  planilla: Planilla = new Planilla()
   nuevaFila: Fila = new Fila()
 
   constructor(private router: Router, private clienteService: StubClienteService, private productoService: StubProductoService) { }
@@ -36,5 +36,25 @@ export class AgregarFilaComponent implements OnInit {
 
   crearCeldas() {
     this.nuevaFila.crearCeldas(this.productos)
+  }
+
+  limpiar() {
+    this.nuevaFila.cliente = null
+  }
+
+  agregarFila() {
+    if (this.cantidadesValidas()) {
+      this.planilla.crearNuevaFila(this.nuevaFila)
+    } else
+      console.log(this.planilla)
+  }
+
+  cantidadesValidas() {
+    return this.nuevaFila.celdas.every(celda => celda.cantidad >= 0)
+  }
+
+  cantidadEsValida(cantidad: number) {
+    console.log(cantidad)
+    return false
   }
 }
