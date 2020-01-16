@@ -25,14 +25,8 @@ export class Fila {
     }
 
     get subtotal() {
-        // if (this.celdas != null)
-        console.log(this.celdas.map(celda => celda.precioFinal))
-        return 0
-
-        // return this.celdas.map((celda1) => celda1.precioFinal + 0).reduce((p1, p2) => p1 + p2)
-        // else
-
-        // return this.celdas.reduce(this.sumarCeldas)
+        var listaPrecios = this.celdas.map(celda => celda.precioFinal)
+        return listaPrecios.reduce((a, b) => a + b)
     }
 
     sumarTotalCeldas(total, celda) {
