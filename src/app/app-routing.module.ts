@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ClientesComponent } from 'src/components/clientes/clientes.component';
+import { EditarClienteComponent } from 'src/components/editar-clientes/editar-clientes.component';
 import { EditarProductosComponent } from 'src/components/editar-productos/editar-productos.component';
 import { PlanillaComponent } from 'src/components/planilla/planilla.component';
-import { EditarClienteComponent } from 'src/components/editar-clientes/editar-clientes.component';
-import { ClientesComponent } from 'src/components/clientes/clientes.component';
-import { EditarComponent } from 'src/components/editar/editar.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: "planilla", pathMatch: 'full' },
@@ -12,7 +11,6 @@ export const routes: Routes = [
   { path: 'planilla', component: PlanillaComponent },
   { path: 'editar-cliente/:id', component: EditarClienteComponent },
   { path: 'clientes', component: ClientesComponent },
-  { path: 'editar/:id', component: EditarComponent }
 
 ]
 @NgModule({
@@ -21,4 +19,4 @@ export const routes: Routes = [
 })
 export class AppRoutingModule { }
 
-export const routingComponents = [EditarProductosComponent, PlanillaComponent, EditarClienteComponent, ClientesComponent, EditarComponent]
+export const routingComponents = [EditarProductosComponent, PlanillaComponent, EditarClienteComponent, ClientesComponent]
