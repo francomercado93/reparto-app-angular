@@ -22,12 +22,20 @@ export class PlanillaComponent implements OnInit {
   nuevaFila: Fila = new Fila()
   displayedColumns: string[] = new Array
   recaudacionControl: FormControl
+  opcionesFecha: {}
+  fechaModel: any = {}
 
 
   constructor(private router: Router, private clienteService: StubClienteService, private productoService: StubProductoService) { }
 
   async ngOnInit() {
     this.planilla.filas = new Array
+    this.opcionesFecha = {
+      dateFormat: 'dd/mm/yyyy'
+    }
+    this.fechaModel = {
+      date: this.convertirANuevoDate(new Date())
+    }
     // Se setea el valor cuando se obtiene la planilla por el service
     this.recaudacionControl = new FormControl('', [Validators.min(0), Validators.required])
     try {
@@ -74,5 +82,20 @@ export class PlanillaComponent implements OnInit {
 
   actualizarRecaudacionPlanilla() {
     this.planilla.recaudacion = this.recaudacionControl.value
+  }
+
+  convertirANuevoDate(fecha: Date) {
+    return {
+      year: fecha.getFullYear(),
+      month: fecha.getMonth() + 1,
+      day: fecha.getDate()
+    }
+  }
+
+  convertirADate(fecha: any): Date {
+    if (!fecha) {
+      return null
+    }
+    return new Date(fecha.year, fecha.month - 1, fecha.day)
   }
 }

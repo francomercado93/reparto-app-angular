@@ -15,16 +15,19 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MyDatePickerModule } from 'mydatepicker';
 import { AgregarFilaComponent } from 'src/components/agregar-fila/agregar-fila.component';
 import { ToolbarComponent } from 'src/components/toolbar/toolbar.component';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ProveedoresComponent } from 'src/components/proveedores/proveedores.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ToolbarComponent,
     AgregarFilaComponent,
+    ProveedoresComponent,
     routingComponents
   ],
   imports: [
@@ -45,6 +48,7 @@ import { AppComponent } from './app.component';
     MatTableModule,
     MatGridListModule,
     MatSnackBarModule,
+    MyDatePickerModule,
     AppRoutingModule
   ],
   providers: [],

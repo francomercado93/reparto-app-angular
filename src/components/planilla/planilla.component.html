@@ -1,8 +1,11 @@
 <mat-tab-group class="animated fadeIn">
+  <mat-tab label="Proveedores">
+    <app-proveedores></app-proveedores>
+  </mat-tab>
   <mat-tab label="Planilla">
-    <div *ngIf="planilla.filas.length == 0">Debe agregar una nueva fila</div>
+    <!-- <div *ngIf="planilla.filas.length == 0">Debe agregar una nueva fila</div> -->
 
-    <div class="table-responsive" *ngIf="planilla.filas.length > 0">
+    <div class="table-responsive container" *ngIf="planilla.filas.length > 0">
       <table class="table table-striped table-hover mat-elevation-z8">
         <thead>
           <tr>
@@ -38,13 +41,13 @@
       </table>
     </div>
     <div>
-      <mat-form-field>
-        <mat-label>Recaudacion</mat-label>
-        <input matInput placeholder="Ingrese la recaudacion del dia" [formControl]="recaudacionControl">
-        <mat-error *ngIf=recaudacionControl.invalid>{{getErrorMessageRecaudacion()}}</mat-error>
-      </mat-form-field>
+      <!-- <mat-form-field>
+              <mat-label>Recaudacion</mat-label>
+              <input matInput placeholder="Ingrese la recaudacion del dia" [formControl]="recaudacionControl">
+              <mat-error *ngIf=recaudacionControl.invalid>{{getErrorMessageRecaudacion()}}</mat-error>
+            </mat-form-field> -->
     </div>
-    <button (click)="actualizarRecaudacionPlanilla()">Actualizar</button>
+    <!-- <button (click)="actualizarRecaudacionPlanilla()">Actualizar</button> -->
   </mat-tab>
   <mat-tab label="Agregar fila">
     <app-agregar-fila [planilla]="planilla"></app-agregar-fila>
