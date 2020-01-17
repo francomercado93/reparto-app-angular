@@ -7,10 +7,12 @@
   .full-width {
     width: 100%;
   }
-  
-  td {
-    padding-right: 0.1em;
+  table {
+    width: 100%;
   }
+  /* td {
+    padding-right: 0.1em;
+  } */
 
   .card-subtotal{
     text-align: center;
@@ -29,3 +31,5 @@
   .clean-button {
     min-height: 60px;
   }
+
+  

@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { StubClienteService } from 'src/services/cliente.service';
 import { StubProductoService } from 'src/services/producto.service';
 import { mostrarError } from 'src/domain/mostrarErros';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-agregar-fila',
@@ -20,7 +21,7 @@ export class AgregarFilaComponent implements OnInit {
   productos: Producto[]
   nuevaFila: Fila = new Fila()
 
-  constructor(private router: Router, private clienteService: StubClienteService, private productoService: StubProductoService) { }
+  constructor(private router: Router, private clienteService: StubClienteService, private productoService: StubProductoService, private _snackBar: MatSnackBar) { }
 
   async ngOnInit() {
     try {
@@ -28,7 +29,7 @@ export class AgregarFilaComponent implements OnInit {
       this.clientes = await this.clienteService.getClientes()
       this.productos = await this.productoService.getProductos()
       // Cambiar para que reciba una planilla por service
-      this.planilla.initFilas(this.clientes, this.productos)
+      // this.planilla.initFilas(this.clientes, this.productos)
     } catch (error) {
       mostrarError(this, error)
     }
@@ -43,14 +44,23 @@ export class AgregarFilaComponent implements OnInit {
   }
 
   agregarFila() {
-    if (this.cantidadesValidas()) {
+    if (!this.cantidadesSonValidas()) {
+      // if (window.confirm("Crear nueva fila?")) {
       this.planilla.crearNuevaFila(this.nuevaFila)
-    } else
+      this.nuevaFila = new Fila()
+      this._snackBar.open("Fila agregada a la planilla", "OK", {
+        duration: 2000,
+      });
+      // }
       console.log(this.planilla)
+    } else {
+      console.log("no creo")
+      console.log(this.planilla)
+    }
   }
 
-  cantidadesValidas() {
-    return this.nuevaFila.celdas.every(celda => celda.cantidad >= 0)
+  cantidadesSonValidas(): boolean {
+    return !this.nuevaFila.celdas.every(celda => celda.cantidad >= 0)
   }
 
   cantidadEsValida(cantidad: number) {

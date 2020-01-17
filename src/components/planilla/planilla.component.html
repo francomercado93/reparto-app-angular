@@ -1,43 +1,43 @@
 <mat-tab-group class="animated fadeIn">
   <mat-tab label="Planilla">
-    <button mat-raised-button color="primary" class="add-button clean-button" (click)="test()">
-      Test
-    </button>
+    <div *ngIf="planilla.filas.length == 0">Debe agregar una nueva fila</div>
 
+    <div class="table-responsive" *ngIf="planilla.filas.length > 0">
+      <table class="table table-striped table-hover mat-elevation-z8">
+        <thead>
+          <tr>
+            <th scope="col">Cliente</th>
+            <th scope="col" *ngFor="let producto  of productos">{{producto.nombre}}</th>
+            <th scope="col">Subtotal fila</th>
+            <th scope="col">Pago</th>
+            <th scope="col">Observaciones</th>
+            <th scope="col">Anotaciones</th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <th scope="col">Totales</th>
+            <th scope="col" *ngFor="let producto of productos">{{getCantidadPaquetes(producto)}}</th>
+            <th scope="col">{{ planilla.totalImportes }}</th>
+            <th scope="col">{{ planilla.totalPagos }}</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </tfoot>
+        <tbody>
+          <tr *ngFor="let fila of planilla.filas">
+            <td>{{fila.cliente.nombre}}</td>
+            <td *ngFor="let celda of fila.celdas">{{celda.cantidad}}
+            </td>
+            <td>{{fila.subtotal}}</td>
+            <td>{{fila.pago}}</td>
+            <td>{{fila.observaciones}}</td>
+            <td>{{fila.anotaciones}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-    <!-- <div class="card">
-      <div class="card-cascade wider text-center">
-        <div class="card-header">
-          <h2 class="h2-responsive mb-2">Planilla diaria ...</h2>
-        </div>
-      </div>
-      <div class="card-body">
-        <table class="table table-striped table-hover">
-          <thead>
-            <tr>
-              <th scope="col">Cliente</th>
-              <th scope="col">Migas</th>
-              <th scope="col">Arabes blancos</th>
-              <th scope="col">Arabe negros</th> -->
-    <!-- <th scope="col">Pan rallado</th>
-                  <th scope="col">Tartines</th>
-                  <th scope="col">Capelinas</th>
-                  <th scope="col">Pizzas</th> -->
-    <!-- <th scope="col">Subtotal fila</th>
-              <th scope="col">Pago</th>
-              <th scope="col">Obs.</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let fila of planilla.filas">
-              <td>{{fila.cliente.nombre}}</td>
-              <td *ngFor="let celda of fila.celdas">{{celda.cantidad}}
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div> -->
   </mat-tab>
   <mat-tab label="Agregar fila">
     <app-agregar-fila [planilla]="planilla"></app-agregar-fila>

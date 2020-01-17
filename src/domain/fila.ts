@@ -8,7 +8,7 @@ export class Fila {
     }
 
     constructor(public cliente?: Cliente, public celdas?: Array<Celda>,
-        public pago?: number, public observaciones?: string) { }
+        public pago?: number, public anotaciones?: string) { }
 
     crearCeldas(productos: Producto[]) {
         this.celdas = new Array
@@ -42,4 +42,15 @@ export class Fila {
     // get gananciaFila() {
     //     return this.celdas.reduce(sumarGananciasCeldas)
     // }
+
+    // TODO: hacer cuenta con saldos anteriores de otras planillas (saldo del cliente en realidad)
+    get observaciones(): string {
+        if (this.subtotal > this.pago) {
+            return 'El cliente debe $' + (this.subtotal - this.pago)
+        }
+        if (this.subtotal < this.pago) {
+            return 'Saldo a favor del cliente: $' + (this.pago - this.subtotal)
+        }
+        return ''
+    }
 }

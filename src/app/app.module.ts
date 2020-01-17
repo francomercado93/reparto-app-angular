@@ -18,7 +18,7 @@ import { AgregarFilaComponent } from 'src/components/agregar-fila/agregar-fila.c
 import { ToolbarComponent } from 'src/components/toolbar/toolbar.component';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
-
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -44,6 +44,7 @@ import { AppComponent } from './app.component';
     ReactiveFormsModule,
     MatTableModule,
     MatGridListModule,
+    MatSnackBarModule,
     AppRoutingModule
   ],
   providers: [],
