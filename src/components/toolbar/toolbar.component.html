@@ -2,7 +2,10 @@
   <span>Reparto</span>
   <span class="example-spacer"></span>
   <button mat-button [routerLink]="['/planilla']">Planilla</button>
-  <button mat-button (click)="nuevoCliente()">Nuevo cliente</button>
-  <button mat-button [routerLink]="['/clientes']">Clientes</button>
+  <button mat-button [matMenuTriggerFor]="belowMenu">Clientes</button>
+  <mat-menu #belowMenu="matMenu" yPosition="below" class="block">
+    <button mat-button (click)="nuevoCliente()">Nuevo cliente</button>
+    <button mat-button [routerLink]="['/clientes']">Lista de Clientes</button>
+  </mat-menu>
   <button mat-button [routerLink]="['/editar-productos']">Editar productos</button>
 </mat-toolbar>

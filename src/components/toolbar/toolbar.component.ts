@@ -8,15 +8,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./toolbar.component.css']
 })
 export class ToolbarComponent implements OnInit {
-  
-  component: String
-  
+
   constructor(private clienteService: StubClienteService, private router: Router) { }
 
   ngOnInit() {
   }
 
-  nuevoCliente(){
+  nuevoCliente() {
     this.clienteService.initCliente()
     this.router.navigate(['/editar-cliente/new'])
   }

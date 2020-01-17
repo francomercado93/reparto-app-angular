@@ -45,10 +45,11 @@ export class Fila {
 
     // TODO: hacer cuenta con saldos anteriores de otras planillas (saldo del cliente en realidad)
     get observaciones(): string {
-        if (this.subtotal > this.pago) {
+        var diferencia = this.subtotal - this.pago
+        if (diferencia > 0) {
             return 'El cliente debe $' + (this.subtotal - this.pago)
         }
-        if (this.subtotal < this.pago) {
+        if (diferencia < 0) {
             return 'Saldo a favor del cliente: $' + (this.pago - this.subtotal)
         }
         return ''

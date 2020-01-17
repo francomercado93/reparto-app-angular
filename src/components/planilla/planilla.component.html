@@ -20,8 +20,8 @@
             <th scope="col" *ngFor="let producto of productos">{{getCantidadPaquetes(producto)}}</th>
             <th scope="col">{{ planilla.totalImportes }}</th>
             <th scope="col">{{ planilla.totalPagos }}</th>
-            <th scope="col"></th>
-            <th scope="col"></th>
+            <th scope="col">Recaudacion: ${{planilla.recaudacion}}</th>
+            <th scope="col">{{getObservacionesPlanilla()}}</th>
           </tr>
         </tfoot>
         <tbody>
@@ -37,7 +37,14 @@
         </tbody>
       </table>
     </div>
-
+    <div>
+      <mat-form-field>
+        <mat-label>Recaudacion</mat-label>
+        <input matInput placeholder="Ingrese la recaudacion del dia" [formControl]="recaudacionControl">
+        <mat-error *ngIf=recaudacionControl.invalid>{{getErrorMessageRecaudacion()}}</mat-error>
+      </mat-form-field>
+    </div>
+    <button (click)="actualizarRecaudacionPlanilla()">Actualizar</button>
   </mat-tab>
   <mat-tab label="Agregar fila">
     <app-agregar-fila [planilla]="planilla"></app-agregar-fila>

@@ -7,6 +7,7 @@ import { Producto } from 'src/domain/producto';
 import { Cliente } from 'src/domain/cliente';
 import { mostrarError } from 'src/domain/mostrarErros';
 import { Fila } from 'src/domain/fila';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-planilla',
@@ -20,11 +21,15 @@ export class PlanillaComponent implements OnInit {
   planilla: Planilla = new Planilla()
   nuevaFila: Fila = new Fila()
   displayedColumns: string[] = new Array
+  recaudacionControl: FormControl
+
 
   constructor(private router: Router, private clienteService: StubClienteService, private productoService: StubProductoService) { }
 
   async ngOnInit() {
     this.planilla.filas = new Array
+    // Se setea el valor cuando se obtiene la planilla por el service
+    this.recaudacionControl = new FormControl('', [Validators.min(0), Validators.required])
     try {
       this.router.routeReuseStrategy.shouldReuseRoute = () => false
       this.clientes = await this.clienteService.getClientes()
@@ -32,7 +37,6 @@ export class PlanillaComponent implements OnInit {
       this.initDisplayedColumn()
       // Cambiar para que reciba una planilla por service
       // this.planilla.initFilas(this.clientes, this.productos)
-      console.log(this.planilla)
     } catch (error) {
       mostrarError(this, error)
     }
@@ -41,24 +45,34 @@ export class PlanillaComponent implements OnInit {
     this.displayedColumns.push('cliente')
     this.productos.forEach(producto => this.displayedColumns.push(producto.nombre))
     this.displayedColumns.push('subtotal', 'observaciones', 'anotaciones')
-    console.log(this.displayedColumns)
-    // = ['cliente', 'subtotal', 'observaciones', 'anotaciones'];
   }
 
   crearCeldas() {
     this.nuevaFila.crearCeldas(this.productos)
   }
 
-  test(element) {
-    console.log(element)
-  }
-
   getCantidadPaquetes(producto: Producto): number {
     return this.planilla.getCantidadPaquetes(producto)
   }
 
-  getTotalPlanilla(){
-    return this.planilla.total
+  getObservacionesPlanilla(): string {
+    var diferencia = this.planilla.totalPagos - this.planilla.recaudacion
+    if (diferencia > 0) {
+      return 'Faltan $' + (this.planilla.totalPagos - this.planilla.recaudacion)
+        + ' en la recaudacion del dia'
+    }
+    if (diferencia < 0) {
+      return 'Falta anotar algun cliente o falta anotar algun gasto ($' + Math.abs(diferencia) + ')'
+    }
+    return ''
   }
 
+  getErrorMessageRecaudacion() {
+    return this.recaudacionControl.hasError('required') ? 'Este campo es requerido' :
+      this.recaudacionControl.hasError('min') ? 'La cifra debe ser mayor a cero' : ''
+  }
+
+  actualizarRecaudacionPlanilla() {
+    this.planilla.recaudacion = this.recaudacionControl.value
+  }
 }
