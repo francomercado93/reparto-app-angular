@@ -1,5 +1,5 @@
 <form class="container">
-  <!-- form-nueva-fila  -->
+  <br />
   <div class="row">
     <div class="col-sm-10">
       <mat-form-field appearance="fill" class="full-width">
@@ -16,7 +16,7 @@
       </button>
     </div>
   </div>
-  <div *ngIf="nuevaFila.cliente" class="mt-2 animated fadeInDown">
+  <div *ngIf="nuevaFila.cliente" class="mt-2 animated fadeIn">
     <div class="row">
       <div class="col-sm" *ngFor="let celda of nuevaFila.celdas">
         <mat-form-field appearance="outline" class="full-width">
@@ -39,10 +39,9 @@
       </div>
       <div class="col-sm">
         <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Observaciones</mat-label>
+          <mat-label>Anotaciones</mat-label>
           <!-- Porque hay que agregar name ? -->
-          <input type="number" matInput placeholder="Observaciones" name="observaciones"
-            [(ngModel)]="nuevaFila.observaciones">
+          <input matInput placeholder="Anotaciones" name="anotaciones" [(ngModel)]="nuevaFila.anotaciones">
         </mat-form-field>
       </div>
     </div>

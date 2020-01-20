@@ -80,8 +80,9 @@ export class PlanillaComponent implements OnInit {
       this.recaudacionControl.hasError('min') ? 'La cifra debe ser mayor a cero' : ''
   }
 
-  actualizarRecaudacionPlanilla() {
-    this.planilla.recaudacion = this.recaudacionControl.value
+  test() {
+    console.log(this.planilla)
+    // this.planilla.recaudacion = this.recaudacionControl.value
   }
 
   convertirANuevoDate(fecha: Date) {

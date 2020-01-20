@@ -21,6 +21,7 @@ import { ToolbarComponent } from 'src/components/toolbar/toolbar.component';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProveedoresComponent } from 'src/components/proveedores/proveedores.component';
+import { AccionesComponent } from 'src/components/acciones/acciones.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { ProveedoresComponent } from 'src/components/proveedores/proveedores.com
     ToolbarComponent,
     AgregarFilaComponent,
     ProveedoresComponent,
+    AccionesComponent,
     routingComponents
   ],
   imports: [

@@ -1,0 +1,27 @@
+<div class="container">
+  <br />
+  <p class="h2">Ingrese fecha de la planilla, recaudacion, gastos, carga del dia y pagos</p><br />
+  <div class="dropdown-divider"></div>
+  <form #planillaForm="ngForm">
+    <!-- (ngSubmit)="onSubmit()" -->
+    <!-- TODO: ingresar fecha -->
+    <div class="form-generico">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Gastos del dia</mat-label>
+        <input matInput placeholder="Ingrese gastos del dia" [(ngModel)]="planilla.gastos" name="gastos"
+          #gastos="ngModel" pattern="^[0-9]+$" required>
+        <mat-error *ngIf="gastos.invalid">Ingrese una cantidad válida</mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Recaudacion del dia</mat-label>
+        <input matInput placeholder="Ingrese la recaudacion del dia" [(ngModel)]="planilla.recaudacion"
+          name="recaudacion" pattern="^[0-9]+$" #recaudacion="ngModel" required>
+        <mat-error *ngIf="recaudacion.invalid">Ingrese una cantidad válida</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="button-row">
+      <button mat-stroked-button color="primary" class="button" type="button" (click)="restablecer(planillaForm); "
+        [disabled]="!planillaForm.form.valid || planillaForm.form.pristine || planillaForm.form.untouched ">Restablecer</button>
+    </div>
+  </form>
+</div>

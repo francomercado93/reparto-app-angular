@@ -46,6 +46,7 @@ export class AgregarFilaComponent implements OnInit {
   agregarFila() {
     if (!this.cantidadesSonValidas()) {
       // if (window.confirm("Crear nueva fila?")) {
+      console.log(this.nuevaFila)
       this.planilla.crearNuevaFila(this.nuevaFila)
       this.nuevaFila = new Fila()
       this._snackBar.open("Fila agregada a la planilla", "OK", {

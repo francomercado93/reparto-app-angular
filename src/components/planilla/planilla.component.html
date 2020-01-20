@@ -2,9 +2,12 @@
   <mat-tab label="Proveedores">
     <app-proveedores></app-proveedores>
   </mat-tab>
+  <mat-tab label="Acciones">
+    <app-acciones [planilla]="planilla"></app-acciones>
+  </mat-tab>
   <mat-tab label="Planilla">
     <!-- <div *ngIf="planilla.filas.length == 0">Debe agregar una nueva fila</div> -->
-
+    <br />
     <div class="table-responsive container" *ngIf="planilla.filas.length > 0">
       <table class="table table-striped table-hover mat-elevation-z8">
         <thead>
@@ -47,7 +50,7 @@
               <mat-error *ngIf=recaudacionControl.invalid>{{getErrorMessageRecaudacion()}}</mat-error>
             </mat-form-field> -->
     </div>
-    <!-- <button (click)="actualizarRecaudacionPlanilla()">Actualizar</button> -->
+    <button (click)="test()">Test</button>
   </mat-tab>
   <mat-tab label="Agregar fila">
     <app-agregar-fila [planilla]="planilla"></app-agregar-fila>
