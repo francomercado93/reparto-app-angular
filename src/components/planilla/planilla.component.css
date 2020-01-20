@@ -2,8 +2,10 @@
 
   .table-center{
     text-align: center;
+    align-items: center;
   }
 
   th {
     text-align: center;
+    align-items: center;
   }
