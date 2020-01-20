@@ -1,0 +1,30 @@
+<form #planillaForm="ngForm" (ngSubmit)="onSubmit()">
+  <div class="form-producto">
+    <div class="form-group">
+      <label for="fecha">Fecha</label>
+      <my-date-picker name="fechaPlanilla" [options]="opcionesFecha" [(ngModel)]="fechaPlanilla" required>
+      </my-date-picker>
+      <small id="fecha" class="form-text text-muted">Ingrese fecha de la planilla</small>
+    </div>
+
+
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label>Gastos del dia</mat-label>
+      <input type="number" matInput placeholder="Ingrese gastos del dia" [(ngModel)]="planilla.gastos" name=gastos
+        #gastos="ngModel">
+      <mat-error *ngIf="gastos.invalid">{{getErrorMessageGastos()}}</mat-error>
+    </mat-form-field>
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label>Recaudacion del dia</mat-label>
+      <input type="number" matInput placeholder="Ingrese la recaudacion del dia" [(ngModel)]="planilla.recaudacion"
+        name="recaudacion" #recaudacion="ngModel">
+      <mat-error *ngIf="recaudacion.invalid">{{getErrorMessageRecaudacion()}}</mat-error>
+      <span matPrefix>$&nbsp;</span>
+    </mat-form-field>
+  </div>
+  <div class="button-row">
+    <button [disabled]="!planillaForm.form.valid" autofocus class="button" mat-raised-button color="primary"
+      type="submit">Aceptar</button>
+    <button class="button" mat-raised-button color="accent" type="button" (click)="volver()">Cancelar</button>
+  </div>
+</form>

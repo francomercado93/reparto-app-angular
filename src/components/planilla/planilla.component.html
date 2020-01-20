@@ -2,9 +2,10 @@
   <mat-tab label="Proveedores">
     <app-proveedores></app-proveedores>
   </mat-tab>
-  <mat-tab label="Planilla">
-    <!-- <div *ngIf="planilla.filas.length == 0">Debe agregar una nueva fila</div> -->
-
+  <mat-tab label="Acciones">
+    <app-acciones [planilla]="planilla"></app-acciones>
+  </mat-tab>
+  <mat-tab label="Planilla" class="container">
     <div class="table-responsive container" *ngIf="planilla.filas.length > 0">
       <table class="table table-striped table-hover mat-elevation-z8">
         <thead>

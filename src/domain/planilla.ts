@@ -6,7 +6,7 @@ import { Celda } from './celda';
 export class Planilla {
 
 
-    constructor(public id?: number, public filas?: Array<Fila>, public recaudacion ?: number) { }
+    constructor(public id?: number, public filas?: Array<Fila>, public fechaPlanilla?: string, public recaudacion?: number, public gastos?: number) { }
 
     initFilas(clientes: Cliente[], productos: Producto[]) {
         this.filas = new Array

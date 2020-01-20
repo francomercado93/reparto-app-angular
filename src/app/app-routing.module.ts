@@ -4,6 +4,7 @@ import { ClientesComponent } from 'src/components/clientes/clientes.component';
 import { EditarClienteComponent } from 'src/components/editar-clientes/editar-clientes.component';
 import { EditarProductosComponent } from 'src/components/editar-productos/editar-productos.component';
 import { PlanillaComponent } from 'src/components/planilla/planilla.component';
+import { AccionesComponent } from 'src/components/acciones/acciones.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: "planilla", pathMatch: 'full' },
