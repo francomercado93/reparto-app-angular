@@ -1,18 +1,24 @@
 <div class="container animated fadeInUp">
+  <br />
+  <p class="h1 text-center">Edicion de clientes</p><br />
+  <div class="dropdown-divider"></div>
   <div class="alert alert-danger animate-repeat" *ngFor="let error of errors">{{error}}</div>
-  <mat-form-field class="input-precios" appearance="outline">
+  <mat-form-field class="input-full-width" appearance="outline">
+    <mat-label>Nombre del cliente</mat-label>
     <input matInput placeholder="Nombre nuevo cliente" [(ngModel)]="nuevoNombre">
   </mat-form-field>
-  <p>
-    <mat-form-field class="input-precios" appearance="outline" *ngFor="let celda of celdas">
+  <p class="h5">Precios finales de los productos</p>
+  <div class="dropdown-divider"></div>
+  <div class="form-generico">
+    <mat-form-field class="form-field" appearance="outline" *ngFor="let celda of celdas">
       <mat-label>{{celda.producto.nombre}}</mat-label>
       <!-- TODO: Mostrar error en matInput -->
       <input type="number" matInput placeholder="Nuevo precio" [(ngModel)]="celda.precioFinal">
       <span matPrefix>$&nbsp;</span>
     </mat-form-field>
-  </p>
-  <div class="example-button-row">
-    <button class="form" mat-raised-button color="primary" (click)="aceptar()">Aceptar</button>
-    <button class="form" mat-raised-button color="accent" (click)="volver()">Cancelar</button>
+  </div>
+  <div class="button-row">
+    <button class="button" mat-raised-button color="primary" (click)="aceptar()">Aceptar</button>
+    <button class="button" mat-raised-button color="accent" (click)="volver()">Cancelar</button>
   </div>
 </div>

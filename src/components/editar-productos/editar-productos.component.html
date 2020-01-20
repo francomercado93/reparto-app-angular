@@ -1,6 +1,8 @@
 <form [formGroup]="listaProdForm" (ngSubmit)="onSubmit()" class="container">
+  <br /><p class="h1 text-center">Precios de productos</p><br />
+  <div class="dropdown-divider"></div>
   <div formArrayName="prods" *ngFor="let prod of prods.controls; let i=index">
-    <div [formGroupName]="i" class="form-producto">
+    <div [formGroupName]="i" class="form-generico">
       <mat-form-field class="form-field" appearance="outline">
         <mat-label>Nombre del producto</mat-label>
         <input matInput placeholder="Ingrese nombre" formControlName="nombre">
