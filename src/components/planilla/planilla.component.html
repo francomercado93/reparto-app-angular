@@ -1,50 +1,6 @@
 <mat-tab-group class="animated fadeIn">
   <mat-tab label="Planilla">
-    <div class="container">
-
-      <br />
-      <div class="alert alert-warning" role="alert" *ngIf="planilla.filas.length == 0">
-        <p class="h1">Debe agregar una nueva fila</p>
-      </div>
-      <div class="table-responsive">
-        <table class="table table-hover table-center mat-elevation-z8">
-          <thead>
-            <tr>
-              <th scope="col">Cliente</th>
-              <th scope="col" *ngFor="let producto  of productos">{{producto.nombre}}</th>
-              <th scope="col">Subtotal fila</th>
-              <th scope="col">Pago</th>
-              <th scope="col">Observaciones</th>
-              <th scope="col">Anotaciones</th>
-            </tr>
-          </thead>
-          <tfoot *ngIf="planilla.filas.length > 0">
-            <tr>
-              <th scope="col">Totales</th>
-              <th scope="col" *ngFor="let producto of productos">{{getCantidadPaquetes(producto)}}</th>
-              <th scope="col">{{ planilla.totalImportes }}</th>
-              <th scope="col">{{ planilla.totalPagos }}</th>
-              <th scope="col">Recaudacion: ${{planilla.recaudacion}}</th>
-              <th scope="col">{{getObservacionesPlanilla()}}</th>
-            </tr>
-          </tfoot>
-          <tbody *ngIf="planilla.filas.length > 0">
-            <tr *ngFor="let fila of planilla.filas">
-              <td>{{fila.cliente.nombre}}</td>
-              <td *ngFor="let celda of fila.celdas">{{celda.cantidad}}
-              </td>
-              <td>{{fila.subtotal}}</td>
-              <td>{{fila.pago}}</td>
-              <td>{{fila.observaciones}}</td>
-              <td>{{fila.anotaciones}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div>
-      </div>
-      <button (click)="test()">Test</button>
-    </div>
+    <app-tabla-planilla [planilla]="planilla"></app-tabla-planilla>
   </mat-tab>
   <mat-tab label="Agregar fila">
     <app-agregar-fila [planilla]="planilla"></app-agregar-fila>

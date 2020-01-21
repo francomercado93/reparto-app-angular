@@ -22,6 +22,7 @@ import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProveedoresComponent } from 'src/components/proveedores/proveedores.component';
 import { AccionesComponent } from 'src/components/acciones/acciones.component';
+import { TablaPlanillaComponent } from 'src/components/tabla-planilla/tabla-planilla.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { AccionesComponent } from 'src/components/acciones/acciones.component';
     AgregarFilaComponent,
     ProveedoresComponent,
     AccionesComponent,
+    TablaPlanillaComponent,
     routingComponents
   ],
   imports: [

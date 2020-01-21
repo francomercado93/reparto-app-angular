@@ -3,8 +3,15 @@
   <p class="h2">Ingrese fecha de la planilla, recaudacion, gastos, carga del dia y pagos</p><br />
   <div class="dropdown-divider"></div>
   <form #planillaForm="ngForm">
-    <!-- (ngSubmit)="onSubmit()" -->
-    <!-- TODO: ingresar fecha -->
+    <div class="form-group">
+      <div *ngIf="planilla.fecha == nulll" class="alert alert-danger" role="alert">
+        Este campo es requerido
+      </div>
+      <label for="fecha">Fecha</label>
+      <my-date-picker name="fecha" [options]="opcionesFecha" [(ngModel)]="planilla.fecha" required>
+      </my-date-picker>
+      <small id="fechaPlanilla" class="form-text text-muted">Seleccione una fecha</small>
+    </div>
     <div class="form-generico">
       <mat-form-field class="form-field" appearance="outline">
         <mat-label>Gastos del dia</mat-label>
@@ -19,6 +26,7 @@
         <mat-error *ngIf="recaudacion.invalid">Ingrese una cantidad válida</mat-error>
       </mat-form-field>
     </div>
+    <br />
     <div class="button-row">
       <button mat-stroked-button color="primary" class="button" type="button" (click)="restablecer(planillaForm); "
         [disabled]="!planillaForm.form.valid || planillaForm.form.pristine || planillaForm.form.untouched ">Restablecer</button>

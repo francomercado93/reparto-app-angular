@@ -1,11 +1,5 @@
-
-
   .table-center{
-    text-align: center;
-    align-items: center;
+    text-align: center !important; 
+    vertical-align: middle !important;
   }
-
-  th {
-    text-align: center;
-    align-items: center;
-  }
+  /* No se aplica en la tabla, averiguar porque */
