@@ -4,6 +4,7 @@ import { Producto } from 'src/domain/producto';
 import { Router } from '@angular/router';
 import { StubProductoService } from 'src/services/producto.service';
 import { mostrarError } from 'src/domain/mostrarErros';
+import { StubPlanillaService } from 'src/services/planilla.service';
 
 @Component({
   selector: 'app-tabla-planilla',
@@ -18,7 +19,7 @@ export class TablaPlanillaComponent implements OnInit {
   fechaModel: any = {}
 
   constructor(private router: Router,
-    private productoService: StubProductoService) { }
+    private productoService: StubProductoService, private planillaService: StubPlanillaService) { }
 
 
   async ngOnInit() {
@@ -31,6 +32,8 @@ export class TablaPlanillaComponent implements OnInit {
     try {
       this.router.routeReuseStrategy.shouldReuseRoute = () => false
       this.productos = await this.productoService.getProductos()
+      this.planillaService.initPlanillas()
+      // this.planillaService.i
       // Cambiar para que reciba una planilla por service
       // this.planilla.initFilas(this.clientes, this.productos)
     } catch (error) {
@@ -66,10 +69,18 @@ export class TablaPlanillaComponent implements OnInit {
     if (!fecha) {
       return null
     }
-    return new Date(fecha.year, fecha.month - 1, fecha.day)
+    return new Date(fecha.date.year, fecha.date.month - 1, fecha.date.day)
   }
 
-  buscarPlanilla() {
-    console.log(this.planilla)
+  async buscarPlanilla() {
+    console.log(this.fechaModel)
+    var fechaDate = this.convertirADate(this.fechaModel)
+    console.log(fechaDate)
+    try {
+      this.planilla = await this.planillaService.getPlanillaFecha(fechaDate)
+      console.log(this.planilla)
+    } catch (error) {
+      mostrarError(this, error)
+    }
   }
 }

@@ -7,7 +7,7 @@ export class Planilla {
 
 
     constructor(public id?: number, public filas?: Array<Fila>, public gastos?: number,
-        public recaudacion?: number, public fecha?: any) { }
+        public recaudacion?: number, public fecha?: Date) { }
 
     initFilas(clientes: Cliente[], productos: Producto[]) {
         this.filas = new Array

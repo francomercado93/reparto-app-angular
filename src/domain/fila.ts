@@ -3,6 +3,7 @@ import { Cliente } from './cliente';
 import { Producto } from './producto';
 export class Fila {
 
+
     get productosCelda() {
         return this.celdas.map(celda => celda.producto)
     }
@@ -53,5 +54,12 @@ export class Fila {
             return 'Saldo a favor del cliente: $' + (this.pago - this.subtotal)
         }
         return ''
+    }
+
+    setearCeldasNoCargadas() {
+        this.celdas.forEach(celda => {
+            if (celda.cantidad == null || celda.cantidad == undefined)
+                celda.cantidad = 0
+        })
     }
 }

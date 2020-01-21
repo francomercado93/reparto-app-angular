@@ -5,14 +5,10 @@ import { REST_SERVER_URL } from './configuration';
 import { map, catchError } from 'rxjs/operators'
 import { Observable, of } from 'rxjs';
 import { Producto } from 'src/domain/producto';
-
-
-
 export interface IProductoService {
   getProductos(): Promise<any>
   actualizarProducto(productoSeleccionado: Producto): void
 }
-
 @Injectable({
   providedIn: 'root'
 })
@@ -32,7 +28,6 @@ export class ProductoService implements IProductoService {
     return Object.assign({}, productoSeleccionado);
   }
 }
-
 @Injectable({
   providedIn: 'root'
 })

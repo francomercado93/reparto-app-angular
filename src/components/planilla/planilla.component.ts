@@ -19,6 +19,7 @@ export class PlanillaComponent implements OnInit {
   clientes: Cliente[]
   productos: Producto[]
   planilla: Planilla = new Planilla()
+  
 
 
   constructor(private router: Router, private clienteService: StubClienteService,
