@@ -4,7 +4,7 @@
   <div class="dropdown-divider"></div>
   <form #planillaForm="ngForm">
     <div class="form-group">
-      <div *ngIf="planilla.fecha == nulll" class="alert alert-danger" role="alert">
+      <div *ngIf="planilla.fecha == null" class="alert alert-danger" role="alert">
         Este campo es requerido
       </div>
       <label for="fecha">Fecha</label>

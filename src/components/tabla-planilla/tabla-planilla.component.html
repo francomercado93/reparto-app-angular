@@ -1,11 +1,29 @@
 <div class="container">
   <br />
+  <p class="h2">Buscar planilla</p>
+  <div class="dropdown-divider"></div>
+  <div class="form-generico">
+    <div class="form-group form-field">
+      <div *ngIf="fechaModel == null" class="alert alert-danger" role="alert">
+        Este campo es requerido
+      </div>
+      <label for="fechaModel">Fecha</label>
+      <my-date-picker name="fechaModel" [options]="opcionesFecha" [(ngModel)]="fechaModel" required>
+      </my-date-picker>
+      <small id="fechaPlanilla" class="form-text text-muted">Seleccione una fecha</small>
+    </div>
+    <br />
+    <div class="form-field">
+      <button mat-raised-button color="primary" class="clean-button" (click)="buscarPlanilla()">
+        Buscar
+      </button>
+    </div>
+  </div>
   <div class="alert alert-warning" role="alert" *ngIf="planilla.filas.length == 0">
     <p class="h1">Debe agregar una nueva fila</p>
   </div>
   <div class="table-responsive">
     <table class="table-center table table table-hover mat-elevation-z8  table-center">
-
       <thead>
         <tr>
           <th scope="col">Cliente</th>
@@ -24,7 +42,7 @@
           <th scope="col">{{ planilla.totalPagos }}</th>
           <th scope="col">Recaudacion: ${{planilla.recaudacion}}</th>
           <th scope="col">{{getObservacionesPlanilla()}}</th>
-          
+
         </tr>
       </tfoot>
       <tbody *ngIf="planilla.filas.length > 0">
@@ -40,7 +58,4 @@
       </tbody>
     </table>
   </div>
-  <div>
-  </div>
-  <!-- <button (click)="test()">Test</button> -->
 </div>

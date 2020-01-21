@@ -3,6 +3,7 @@
 
 .form-generico {
   display: flex;
+  align-items: center;
 }
 
 .form-generico > * {
