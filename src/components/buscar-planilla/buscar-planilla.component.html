@@ -1,0 +1,25 @@
+<div class="container" style="height: 500px;">
+  <div class="row">
+    <div class="col m-3">
+      <p class="h2">Buscar planilla</p>
+      <div class="dropdown-divider"></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <label for="fechaModel">Fecha</label>
+      <my-date-picker name="fechaModel" [options]="opcionesFecha" [(ngModel)]="fechaModel" required>
+      </my-date-picker>
+      <small id="fechaPlanilla" class="form-text text-muted">Seleccione una fecha</small>
+      <div *ngIf="fechaModel == null" class="alert alert-danger" role="alert">
+        Este campo es requerido
+      </div>
+    </div>
+  </div>
+  <div class="col" style="height: 100px;"></div>
+  <div class="button-row">
+    <button mat-raised-button color="primary" class="button" (click)="buscarPlanilla()">
+      Buscar
+    </button>
+  </div>
+</div>

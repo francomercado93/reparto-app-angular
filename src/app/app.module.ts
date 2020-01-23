@@ -23,6 +23,7 @@ import { AppComponent } from './app.component';
 import { ProveedoresComponent } from 'src/components/proveedores/proveedores.component';
 import { AccionesComponent } from 'src/components/acciones/acciones.component';
 import { TablaPlanillaComponent } from 'src/components/tabla-planilla/tabla-planilla.component';
+import { BuscarPlanillaComponent } from 'src/components/buscar-planilla/buscar-planilla.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { TablaPlanillaComponent } from 'src/components/tabla-planilla/tabla-plan
     ProveedoresComponent,
     AccionesComponent,
     TablaPlanillaComponent,
+    BuscarPlanillaComponent,
     routingComponents
   ],
   imports: [
