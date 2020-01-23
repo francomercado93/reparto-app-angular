@@ -22,6 +22,7 @@ export class TablaPlanillaComponent implements OnInit {
 
 
   async ngOnInit() {
+    console.log(this.planilla)
 
     try {
       this.router.routeReuseStrategy.shouldReuseRoute = () => false
@@ -49,5 +50,9 @@ export class TablaPlanillaComponent implements OnInit {
       return 'Falta anotar algun cliente o falta anotar algun gasto ($' + Math.abs(diferencia) + ')'
     }
     return ''
+  }
+
+  test() {
+    console.log(this.planilla)
   }
 }

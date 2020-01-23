@@ -18,12 +18,13 @@ export class PlanillaComponent implements OnInit {
 
   clientes: Cliente[]
   productos: Producto[]
-  planilla: Planilla = new Planilla()
+  planilla: Planilla
 
   constructor(private router: Router, private clienteService: StubClienteService,
     private productoService: StubProductoService) { }
 
   async ngOnInit() {
+    this.planilla = new Planilla()
     this.planilla.filas = new Array
     // Se setea el valor cuando se obtiene la planilla por el service
     try {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Planilla } from 'src/domain/planilla';
 import { StubPlanillaService } from 'src/services/planilla.service';
 import { mostrarError } from 'src/domain/mostrarErros';
@@ -9,10 +9,10 @@ import { mostrarError } from 'src/domain/mostrarErros';
   styleUrls: ['./buscar-planilla.component.css']
 })
 export class BuscarPlanillaComponent implements OnInit {
-
+  
+  @Input() planilla: Planilla
   opcionesFecha: {}
   fechaModel: any = {}
-  planilla: Planilla
 
   constructor(private planillaService: StubPlanillaService) { }
 
