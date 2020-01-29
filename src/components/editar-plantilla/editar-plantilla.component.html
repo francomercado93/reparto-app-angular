@@ -1,0 +1,72 @@
+<div class="container-fluid">
+  <form>
+    <p class="h1 text-center p-3">PLANILLA DIARIA <small>{{fechaPlanilla | date: "dd/MM/yyyy"}}</small></p>
+    <div class="dropdown-divider"></div>
+    <div class="row m-3">
+      <div class="col-sm">
+        <!-- TODO: crear una variable gasto y agregar un boton sumar gasto(los gasto se ingresan de a uno) -->
+        <mat-form-field class="input" appearance="outline">
+          <mat-label>Ingresar gastos totales del dia</mat-label>
+          <input type="number" matInput placeholder="Gastos" name="gastos" [(ngModel)]="planilla.gastos">
+          <span matPrefix>$&nbsp;</span>
+        </mat-form-field>
+      </div>
+      <div class="col-sm">
+        <!-- TODO: crear una variable gasto y agregar un boton sumar gasto(los gasto se ingresan de a uno) -->
+        <mat-form-field class="input" appearance="outline">
+          <mat-label>Ingresar recaudacion del dia</mat-label>
+          <input type="number" matInput placeholder="Recaudacion del dia" name="recaudacion"
+            [(ngModel)]="planilla.recaudacion">
+          <span matPrefix>$&nbsp;</span>
+        </mat-form-field>
+      </div>
+      <div class="col-sm">
+        <h5>Elegir fecha:</h5>
+        <my-date-picker name="fechaPlanilla" [options]="opcionesFecha" [(ngModel)]="fechaModel" required>
+        </my-date-picker>
+      </div>
+    </div>
+        <div class="row">
+          <div class="col-sm p-2">
+            <button class="input" mat-raised-button color="primary" (click)="nuevaFila()">Agregar fila</button>
+          </div>
+        </div>
+    <div class="dropdown-divider"></div>
+  </form>
+  <div class="table-responsive">
+    <table *ngIf="planilla.filas" class="table table-bordered table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th class="align-middle" scope="col">Clientes</th>
+          <th class="align-middle" scope="col">Migas</th>
+          <th class="align-middle" scope="col">Arabes blancos</th>
+          <th class="align-middle" scope="col">Arabes negros</th>
+          <th class="align-middle" scope="col">Subtotal</th>
+          <th class="align-middle" scope="col">Pago</th>
+          <th class="align-middle" scope="col">Saldo actual</th>
+          <th class="align-middle" scope="col">Observaciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let fila of planilla.filas">
+          <td>{{fila.cliente.nombre}}</td>
+          <td *ngFor="let celda of fila.celdas">{{celda.cantidad}}</td>
+          <td>${{fila.subtotal}}</td>
+          <td>${{fila.pago}}</td>
+          <td>{{getSaldoActual(fila) | saldoPipe}}</td>
+          <td>{{fila.observaciones}}</td>
+        </tr>
+      </tbody>
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">Total</th>
+          <th *ngFor="let totalPaquetes of planilla.cantidadesTotales">{{totalPaquetes}}</th>
+          <th scope="col">${{planilla.totalFilas}}</th>
+          <th scope="col">${{planilla.totalPagos}}</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+</div>

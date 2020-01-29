@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card text-center">
   <!--Card content-->
   <div class="card-cascade wider text-center">
     <!--Title-->
@@ -23,10 +23,15 @@
           <td> <a [routerLink]="['/editar-cliente', fila.cliente.id]">{{fila.cliente.id}}</a></td>
           <td><a [routerLink]="['/editar-cliente', fila.cliente.id]"
               id="nombre{{fila.cliente.id}}">{{fila.cliente.nombre}}</a></td>
-              <!-- Todo: si el precioFinal es igual al precioBase mostrar un cartel que avise que tiene que cambiar el precio producto -->
+          <!-- Todo: si el precioFinal es igual al precioBase mostrar un cartel que avise que tiene que cambiar el precio producto -->
           <td *ngFor="let celda of fila.celdas">{{celda.precioFinal }}</td>
         </tr>
       </tbody>
     </table>
+  </div>
+  <div class="row">
+    <div class="col">
+      <button mat-raised-button color="primary" (click)="nuevoCliente()">Crear nuevo cliente</button>
+    </div>
   </div>
 </div>

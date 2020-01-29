@@ -1,12 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Cliente } from 'src/domain/cliente';
-import { REST_SERVER_URL } from './configuration';
-import { map, catchError } from 'rxjs/operators'
-import { Observable, of } from 'rxjs';
 import { Producto } from 'src/domain/producto';
-
-
+import { REST_SERVER_URL } from './configuration';
 
 export interface IProductoService {
   getProductos(): Promise<any>
@@ -48,7 +43,7 @@ export class StubProductoService implements IProductoService {
     let updateProduct = this.productos.find(this.findIndexToUpdate, productoSeleccionado.id)
     let index = this.productos.indexOf(updateProduct)
     this.productos[index] = productoSeleccionado
-    
+
   }
 
   findIndexToUpdate(producto) {

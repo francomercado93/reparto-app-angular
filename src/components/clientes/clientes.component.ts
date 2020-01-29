@@ -28,9 +28,13 @@ export class ClientesComponent implements OnInit {
       this.clientes = await this.clienteService.getClientes()
       this.productos = await this.productoService.getProductos()
       this.planilla.initFilas(this.clientes, this.productos)
-    } catch (error) { 
+    } catch (error) {
       mostrarError(this, error)
     }
+  }
+  nuevoCliente() {
+    this.clienteService.initCliente()
+    this.router.navigate(['/editar-cliente/new'])
   }
 
 }

@@ -1,16 +1,24 @@
 <div class="example-container">
   <div class="alert alert-danger animate-repeat" *ngFor="let error of errors">{{error}}</div>
-  <mat-form-field class="input-precios" appearance="outline">
-    <input matInput placeholder="Nombre nuevo cliente" [(ngModel)]="nuevoNombre">
-  </mat-form-field>
-  <p>
-    <mat-form-field class="input-precios" appearance="outline" *ngFor="let celda of celdas">
-      <mat-label>{{celda.producto.nombre}}</mat-label>
-      <!-- TODO: Mostrar error en matInput -->
-      <input type="number" matInput placeholder="Nuevo precio" [(ngModel)]="celda.precioFinal">
-      <span matPrefix>$&nbsp;</span>
-    </mat-form-field>
-  </p>
+  <div class="row">
+    <div class="col-sm">
+      <mat-form-field class="input-precios" appearance="outline">
+        <input matInput placeholder="Nombre nuevo cliente" [(ngModel)]="nuevoNombre" #nombreCliente="ngModel" required>
+        <mat-error *ngIf="(nombreCliente.pristine || nombreCliente.invalid)">
+          El nombre es requerido.
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm" *ngFor="let celda of celdas">
+      <mat-form-field class="input-precios" appearance="outline" >
+        <mat-label>{{celda.producto.nombre}}</mat-label>
+        <input type="number" matInput placeholder="Nuevo precio" name="input-precio" [(ngModel)]="celda.precioFinal">
+        <span matPrefix>$&nbsp;</span>
+      </mat-form-field>
+    </div>
+  </div>
   <div class="example-button-row">
     <button class="form" mat-raised-button color="primary" (click)="aceptar()">Aceptar</button>
     <button class="form" mat-raised-button color="accent" (click)="volver()">Cancelar</button>

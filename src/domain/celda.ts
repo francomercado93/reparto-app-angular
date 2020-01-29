@@ -9,6 +9,10 @@ export class Celda {
     get nombreProducto() {
         return this.producto.nombre
     }
+
+    get precioFinalCelda() {
+        return this.precioFinal * this.cantidad
+    }
     // o agregar getter y setter precioFinal eliminando la variable precioFinal
     setPrecioFinal(cliente: Cliente) {
         let gananciaCliente = cliente.gananciaProducto(this.producto.id)
@@ -30,7 +34,4 @@ export class Celda {
         return cliente.gananciaProducto(this.producto.id)
     }
 
-    getTest() {
-        return 555
-    }
 }

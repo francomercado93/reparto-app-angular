@@ -6,6 +6,7 @@ import { Producto } from 'src/domain/producto';
 import { StubClienteService } from 'src/services/cliente.service';
 import { StubProductoService } from 'src/services/producto.service';
 import { Fila } from 'src/domain/fila';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 
 function mostrarError(component, error) {
   console.log("error", error)
@@ -18,7 +19,7 @@ function mostrarError(component, error) {
   styleUrls: ['./editar-clientes.component.css']
 })
 export class EditarClienteComponent implements OnInit {
-
+  formulario: FormGroup
   productos: Array<Producto> = []
   fila: Fila = new Fila()
   errors = []
@@ -32,7 +33,6 @@ export class EditarClienteComponent implements OnInit {
 
   async ngOnInit() {
     this.fila.cliente = new Cliente()
-    // Averiguar diferencia entre this.route.snapshot.params.id y  this.route.params.subscribe(params => {...
     const paramId = this.route.snapshot.params.id
     this.alta = paramId == 'new'
     try {
@@ -62,13 +62,20 @@ export class EditarClienteComponent implements OnInit {
     this.router.navigate(['/clientes'])
   }
 
+  precioNoValido(celda: Celda) {
+    return celda.precioFinal < celda.producto.precioBase
+  }
+
   async aceptar() {
+
     try {
       this.validarNombre()
-      this.fila.cliente.nombre = this.nuevoNombre
-      this.fila.asignarGanancias()
-      this.crearOActualizar();
-      this.volver()
+      if (window.confirm("Confirmar?")) {
+        this.fila.cliente.nombre = this.nuevoNombre
+        this.fila.asignarGanancias()
+        this.crearOActualizar();
+        this.volver()
+      }
     } catch (e) {
       this.errors.push(e)
     }

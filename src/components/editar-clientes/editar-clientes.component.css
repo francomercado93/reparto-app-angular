@@ -23,6 +23,11 @@ justify-content: center;
 .input-precios{
 justify-content: center;
 margin: 0.5rem;
-width: 48%;
+width: 100%;
 min-width: 20rem;
+}
+.row-full-width {
+  /* max-width: 500px; */
+  width: 100%;
+  padding: 2em;
 }
