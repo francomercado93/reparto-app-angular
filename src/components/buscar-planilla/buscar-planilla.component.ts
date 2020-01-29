@@ -9,20 +9,25 @@ import { mostrarError } from 'src/domain/mostrarErros';
   styleUrls: ['./buscar-planilla.component.css']
 })
 export class BuscarPlanillaComponent implements OnInit {
-  
-  @Input() planilla: Planilla
+
+  planilla: Planilla = new Planilla()
   opcionesFecha: {}
   fechaModel: any = {}
 
   constructor(private planillaService: StubPlanillaService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.opcionesFecha = {
       dateFormat: 'dd/mm/yyyy'
     }
     this.fechaModel = {
       date: this.convertirANuevoDate(new Date())
     }
+    // try {
+    //   this.planillaService.initPlanillas()
+    // } catch (e) {
+    //   mostrarError(this, e)
+    // }
   }
 
   convertirANuevoDate(fecha: Date) {
