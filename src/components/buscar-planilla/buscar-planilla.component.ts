@@ -10,9 +10,10 @@ import { mostrarError } from 'src/domain/mostrarErros';
 })
 export class BuscarPlanillaComponent implements OnInit {
 
-  planilla: Planilla = new Planilla()
+  planilla: Planilla
   opcionesFecha: {}
   fechaModel: any = {}
+  error: String
 
   constructor(private planillaService: StubPlanillaService) { }
 
@@ -23,11 +24,11 @@ export class BuscarPlanillaComponent implements OnInit {
     this.fechaModel = {
       date: this.convertirANuevoDate(new Date())
     }
-    // try {
-    //   this.planillaService.initPlanillas()
-    // } catch (e) {
-    //   mostrarError(this, e)
-    // }
+    try {
+      await this.planillaService.initPlanillas()
+    } catch (e) {
+      mostrarError(this, e)
+    }
   }
 
   convertirANuevoDate(fecha: Date) {
@@ -46,12 +47,13 @@ export class BuscarPlanillaComponent implements OnInit {
   }
 
   async buscarPlanilla() {
-    console.log(this.fechaModel)
     var fechaDate = this.convertirADate(this.fechaModel)
-    console.log(fechaDate)
     try {
       this.planilla = await this.planillaService.getPlanillaFecha(fechaDate)
-      console.log(this.planilla)
+      // TODO: agregar un modal cuando no encuentre la planilla para la fecha, y preguntar si se quiere crear una planilla nueva
+      if (this.planilla == null || this.planilla == undefined) {
+        this.error = 'No existe la planilla para la fecha ingresada'
+      }
     } catch (error) {
       mostrarError(this, error)
     }

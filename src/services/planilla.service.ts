@@ -38,6 +38,7 @@ export class StubPlanillaService implements IPlanillaService {
 
   async initPlanillas() {
     var productos = await this.productoService.getProductos()
+    this.clienteService.init()
     this.fila1Planilla1 = new Fila(this.clienteService.getClienteById(10))
     this.fila1Planilla1.crearCeldas(productos)
     this.fila1Planilla1.celdas[0].cantidad = 2
