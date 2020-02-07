@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Planilla } from 'src/domain/planilla';
 import { StubPlanillaService } from 'src/services/planilla.service';
 import { mostrarError } from 'src/domain/mostrarErros';
+import { MatDialog } from '@angular/material/dialog';
+import { SearchModalComponent } from '../search-modal/search-modal.component';
 
 @Component({
   selector: 'app-buscar-planilla',
@@ -15,7 +17,7 @@ export class BuscarPlanillaComponent implements OnInit {
   fechaModel: any = {}
   error: String
 
-  constructor(private planillaService: StubPlanillaService) { }
+  constructor(private planillaService: StubPlanillaService, public dialog: MatDialog) { }
 
   async ngOnInit() {
     this.opcionesFecha = {
@@ -52,11 +54,24 @@ export class BuscarPlanillaComponent implements OnInit {
       this.planilla = await this.planillaService.getPlanillaFecha(fechaDate)
       // TODO: agregar un modal cuando no encuentre la planilla para la fecha, y preguntar si se quiere crear una planilla nueva
       if (this.planilla == null || this.planilla == undefined) {
-        this.error = 'No existe la planilla para la fecha ingresada'
+        this.openDialog(fechaDate)
+        // this.error = 'No existe la planilla para la fecha ingresada'
       }
     } catch (error) {
       mostrarError(this, error)
     }
+  }
+
+  openDialog(fechaDate: Date): void {
+    const dialogRef = this.dialog.open(SearchModalComponent, {
+      width: '250px',
+      data: { fecha: fechaDate }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      // this.animal = result;
+    });
   }
 
 }

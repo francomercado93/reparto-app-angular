@@ -12,6 +12,7 @@ export const routes: Routes = [
   { path: 'buscar-planilla', component: BuscarPlanillaComponent },
   { path: 'editar-cliente/:id', component: EditarClienteComponent },
   { path: 'clientes', component: ClientesComponent },
+  { path: 'planilla/:id', component: PlanillaComponent }
 
 ]
 @NgModule({
@@ -20,4 +21,4 @@ export const routes: Routes = [
 })
 export class AppRoutingModule { }
 
-export const routingComponents = [EditarProductosComponent, BuscarPlanillaComponent, EditarClienteComponent, ClientesComponent]
+export const routingComponents = [EditarProductosComponent, BuscarPlanillaComponent, EditarClienteComponent, ClientesComponent, PlanillaComponent]

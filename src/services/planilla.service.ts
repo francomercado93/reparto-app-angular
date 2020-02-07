@@ -77,4 +77,14 @@ export class StubPlanillaService implements IPlanillaService {
   actualizarPlanilla(planilla: Planilla): void {
     throw new Error("Method not implemented.");
   }
+
+  crearPlanilla(fecha: any) {
+    console.log(fecha)
+    let nuevaPlanilla = new Planilla()
+    nuevaPlanilla.id = this.planillas.length + 1
+    nuevaPlanilla.fecha = fecha
+    this.planillas.push(nuevaPlanilla)
+    return nuevaPlanilla
+  }
+
 }

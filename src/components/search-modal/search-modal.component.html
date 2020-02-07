@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>Atencion</h1>
+<div mat-dialog-content>
+  <p>No se encontro la planilla de la fecha {{data.fecha | date: 'dd/MM/yyyy'}}.</p>
+  <p>Crear una nueva?</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No</button>
+  <button mat-button (click)="crearPlanilla()" cdkFocusInitial>Si</button>
+</div>

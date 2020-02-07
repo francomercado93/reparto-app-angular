@@ -24,6 +24,8 @@ import { ProveedoresComponent } from 'src/components/proveedores/proveedores.com
 import { AccionesComponent } from 'src/components/acciones/acciones.component';
 import { TablaPlanillaComponent } from 'src/components/tabla-planilla/tabla-planilla.component';
 import { BuscarPlanillaComponent } from 'src/components/buscar-planilla/buscar-planilla.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { SearchModalComponent } from 'src/components/search-modal/search-modal.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import { BuscarPlanillaComponent } from 'src/components/buscar-planilla/buscar-p
     AccionesComponent,
     TablaPlanillaComponent,
     BuscarPlanillaComponent,
+    SearchModalComponent,
     routingComponents
   ],
   imports: [
@@ -55,7 +58,11 @@ import { BuscarPlanillaComponent } from 'src/components/buscar-planilla/buscar-p
     MatGridListModule,
     MatSnackBarModule,
     MyDatePickerModule,
+    MatDialogModule,
     AppRoutingModule
+  ],
+  entryComponents: [
+    SearchModalComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
