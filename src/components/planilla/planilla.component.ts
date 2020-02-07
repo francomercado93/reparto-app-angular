@@ -26,7 +26,7 @@ export class PlanillaComponent implements OnInit {
     private planillaService: StubPlanillaService) { }
 
   async ngOnInit() {
-    // this.planilla = new Planilla()
+    this.planilla = new Planilla()
     const id = this.route.snapshot.params.id
     // TODO: EDICION O ALTA DE PLANILLA
     this.planilla.filas = new Array
