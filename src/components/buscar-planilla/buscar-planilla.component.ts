@@ -4,6 +4,7 @@ import { StubPlanillaService } from 'src/services/planilla.service';
 import { mostrarError } from 'src/domain/mostrarErros';
 import { MatDialog } from '@angular/material/dialog';
 import { SearchModalComponent } from '../search-modal/search-modal.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-buscar-planilla',
@@ -17,7 +18,7 @@ export class BuscarPlanillaComponent implements OnInit {
   fechaModel: any = {}
   error: String
 
-  constructor(private planillaService: StubPlanillaService, public dialog: MatDialog) { }
+  constructor(private planillaService: StubPlanillaService, public dialog: MatDialog, private router: Router) { }
 
   async ngOnInit() {
     this.opcionesFecha = {
@@ -56,6 +57,9 @@ export class BuscarPlanillaComponent implements OnInit {
       if (this.planilla == null || this.planilla == undefined) {
         this.openDialog(fechaDate)
         // this.error = 'No existe la planilla para la fecha ingresada'
+      }
+      else {
+        this.router.navigate(['planilla/', this.planilla.id])
       }
     } catch (error) {
       mostrarError(this, error)

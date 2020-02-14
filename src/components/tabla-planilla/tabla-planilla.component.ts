@@ -27,10 +27,6 @@ export class TablaPlanillaComponent implements OnInit {
     try {
       this.router.routeReuseStrategy.shouldReuseRoute = () => false
       this.productos = await this.productoService.getProductos()
-      this.planillaService.initPlanillas()
-      // this.planillaService.i
-      // Cambiar para que reciba una planilla por service
-      // this.planilla.initFilas(this.clientes, this.productos)
     } catch (error) {
       mostrarError(this, error)
     }

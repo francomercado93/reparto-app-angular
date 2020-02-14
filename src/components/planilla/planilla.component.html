@@ -1,8 +1,5 @@
 <!-- Buscar o crear planilla -->
-<!-- <mat-tab-group class="animated fadeIn">
-  <mat-tab label="Buscar planilla">
-    <app-buscar-planilla [planilla]="planilla"></app-buscar-planilla>
-  </mat-tab>
+<mat-tab-group class="animated fadeIn" *ngIf="planilla">
   <mat-tab label="Planilla">
     <app-tabla-planilla [planilla]="planilla"></app-tabla-planilla>
   </mat-tab>
@@ -15,4 +12,4 @@
   <mat-tab label="Acciones">
     <app-acciones [planilla]="planilla"></app-acciones>
   </mat-tab>
-</mat-tab-group> -->
+</mat-tab-group>

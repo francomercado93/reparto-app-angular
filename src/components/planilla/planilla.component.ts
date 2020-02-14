@@ -20,24 +20,24 @@ export class PlanillaComponent implements OnInit {
   clientes: Cliente[]
   productos: Producto[]
   planilla: Planilla
+  alta: boolean = false
 
   constructor(private router: Router, private clienteService: StubClienteService,
     private productoService: StubProductoService, private route: ActivatedRoute,
     private planillaService: StubPlanillaService) { }
 
   async ngOnInit() {
-    this.planilla = new Planilla()
-    const id = this.route.snapshot.params.id
-    // TODO: EDICION O ALTA DE PLANILLA
-    this.planilla.filas = new Array
-    // Se setea el valor cuando se obtiene la planilla por el service
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false
+    const paramId = this.route.snapshot.params.id
+    this.alta = paramId == 'new'
     try {
-      this.router.routeReuseStrategy.shouldReuseRoute = () => false
-      // this.planillaService.getPlanillaFecha()
-      this.clientes = await this.clienteService.getClientes()
-      this.productos = await this.productoService.getProductos()
-      // Cambiar para que reciba una planilla por service
-      // this.planilla.initFilas(this.clientes, this.productos)
+      if (!this.alta) {
+        this.planilla = await this.planillaService.getPlanillaById(paramId);
+      }
+      else {
+        this.planilla = new Planilla()
+        this.planilla.filas = new Array
+      }
     } catch (error) {
       mostrarError(this, error)
     }

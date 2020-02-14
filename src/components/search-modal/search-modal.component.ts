@@ -19,7 +19,7 @@ export class SearchModalComponent {
   }
 
   crearPlanilla() {
-    let nuevaPlanilla = this.planillaService.crearPlanilla(this.data.fecha)
-    this.router.navigate(['planilla/', nuevaPlanilla.id])
+    this.router.navigate(['planilla/new'])
+    this.dialogRef.close()
   }
 }

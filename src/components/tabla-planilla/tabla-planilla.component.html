@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="planilla">
   <div class="table-responsive">
     <!-- <div class="row"> -->
     <!-- <div class="col"> -->
@@ -42,7 +42,6 @@
       </tbody>
     </table>
   </div>
-  <button (click)="test()">Test</button>
   <div class="alert alert-warning" role="alert" *ngIf="planilla.filas.length == 0">
     <p class="h1">Debe agregar una nueva fila</p>
   </div>
