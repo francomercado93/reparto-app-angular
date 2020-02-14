@@ -82,8 +82,9 @@ export class StubPlanillaService implements IPlanillaService {
     throw new Error("Method not implemented.");
   }
 
-  crearPlanilla(fecha: any) {
+  crearPlanilla(fecha: Date) {
     console.log(fecha)
+    // Guardar localmente o hacer un post y guardar en la bd?s
     let nuevaPlanilla = new Planilla()
     nuevaPlanilla.id = this.planillas.length + 1
     nuevaPlanilla.fecha = fecha

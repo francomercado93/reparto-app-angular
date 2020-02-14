@@ -29,17 +29,15 @@ export class PlanillaComponent implements OnInit {
   async ngOnInit() {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false
     const paramId = this.route.snapshot.params.id
-    this.alta = paramId == 'new'
+    // this.alta = paramId == 'new'
     try {
-      if (!this.alta) {
-        this.planilla = await this.planillaService.getPlanillaById(paramId);
-      }
-      else {
-        this.planilla = new Planilla()
+      this.planilla = await this.planillaService.getPlanillaById(paramId);
+      if (this.planilla.filas == null || this.planilla.filas == undefined) {
         this.planilla.filas = new Array
       }
     } catch (error) {
-      mostrarError(this, error)
+      // mostrarError(this, error)
+      console.log("error", error)
     }
   }
 }
