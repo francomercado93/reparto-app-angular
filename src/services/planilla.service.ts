@@ -27,15 +27,15 @@ export class PlanillaService implements IPlanillaService {
   providedIn: 'root'
 })
 export class StubPlanillaService implements IPlanillaService {
-  
+
   planillas: Array<Planilla>
   fila1Planilla1: Fila
   fila2Planilla1: Fila
   fila1Planilla2: Fila
   fila2Planilla2: Fila
-  
+
   constructor(private clienteService: StubClienteService, private productoService: StubProductoService) { }
-  
+
   async initPlanillas() {
     var productos = await this.productoService.getProductos()
     this.clienteService.init()
@@ -77,9 +77,11 @@ export class StubPlanillaService implements IPlanillaService {
   async getPlanillaById(paramId: string): Promise<any> {
     return this.planillas.find(planilla => planilla.id == parseInt(paramId))
   }
-  
-  actualizarPlanilla(planilla: Planilla): void {
-    throw new Error("Method not implemented.");
+
+  actualizarPlanilla(planilla: Planilla) {
+    this.planillas.filter(pl => pl.id !== planilla.id)
+    this.planillas.push(planilla)
+
   }
 
   crearPlanilla(fecha: Date) {

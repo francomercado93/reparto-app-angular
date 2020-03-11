@@ -49,7 +49,7 @@ export class EditarProductosComponent implements OnInit {
   }
 
   volver() {
-    this.router.navigate(['planilla'])
+    this.router.navigate(['buscar-planilla'])
   }
 
   addProdForm(prod: Producto) {

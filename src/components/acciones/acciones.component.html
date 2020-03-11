@@ -8,7 +8,7 @@
         Este campo es requerido
       </div>
       <label for="fecha">Fecha</label>
-      <my-date-picker name="fecha" [options]="opcionesFecha" [(ngModel)]="planilla.fecha" required>
+      <my-date-picker name="fecha" [options]="opcionesFecha" [(ngModel)]="fechaModel" required>
       </my-date-picker>
       <small id="fechaPlanilla" class="form-text text-muted">Seleccione una fecha</small>
     </div>
@@ -29,7 +29,11 @@
     <br />
     <div class="button-row">
       <button mat-stroked-button color="primary" class="button" type="button" (click)="restablecer(planillaForm); "
-        [disabled]="!planillaForm.form.valid || planillaForm.form.pristine || planillaForm.form.untouched ">Restablecer</button>
+        [disabled]="!planillaForm.form.valid || planillaForm.form.pristine || planillaForm.form.untouched ">Restablecer
+      </button>
+      <button mat-stroked-button color="primary" class="button" type="button" (click)="guardarPlanilla(planillaForm); "
+        [disabled]="!planillaForm.form.valid || planillaForm.form.pristine || planillaForm.form.untouched ">Guardar cambios
+      </button>
     </div>
   </form>
 </div>

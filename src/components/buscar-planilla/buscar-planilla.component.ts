@@ -53,7 +53,6 @@ export class BuscarPlanillaComponent implements OnInit {
     var fechaDate = this.convertirADate(this.fechaModel)
     try {
       this.planilla = await this.planillaService.getPlanillaFecha(fechaDate)
-      // TODO: agregar un modal cuando no encuentre la planilla para la fecha, y preguntar si se quiere crear una planilla nueva
       if (this.planilla == null || this.planilla == undefined) {
         this.openDialog(fechaDate)
         // this.error = 'No existe la planilla para la fecha ingresada'
